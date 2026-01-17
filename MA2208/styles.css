@@ -1,0 +1,7 @@
+blockquote {
+  font-style: italic
+}
+/* Hide the title */
+.title {
+  display: none;
+}
