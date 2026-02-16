@@ -297,7 +297,7 @@
         }
 
         .section-container {
-            max-width: 1400px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -547,6 +547,63 @@
 
         .scholar-info a:hover {
             text-decoration: underline;
+        }
+
+        /* Work Experience Section */
+        .experience-timeline {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .experience-item {
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.2);
+        }
+
+        .experience-item::before {
+            display: none;
+        }
+
+        .experience-item:last-child {
+            padding-bottom: 1.5rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .experience-item .position {
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .experience-item .organization {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        .experience-item .duration {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        .experience-item .sponsor {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            font-style: italic;
         }
 
         /* Teaching Section */
@@ -907,6 +964,10 @@
                 padding: 0.8rem 1.5rem;
                 font-size: 1rem;
             }
+
+            .experience-timeline {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -918,6 +979,7 @@
             <div class="nav-right">
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
                     <li><a href="#teaching">Teaching</a></li>
                     <li><a href="#scholars">Research Team</a></li>
                     <li><a href="#publications">Publications</a></li>
@@ -978,6 +1040,37 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section class="section" id="experience">
+        <div class="section-container">
+            <h2 class="section-title">Work Experience</h2>
+            <ul class="experience-timeline">
+                <li class="experience-item">
+                    <div class="position">Assistant Professor</div>
+                    <div class="organization">Mahindra University, Hyderabad</div>
+                    <div class="duration">2021 – Present</div>
+                </li>
+                <li class="experience-item">
+                    <div class="position">Post Doctoral Fellow</div>
+                    <div class="organization">IIT Delhi, New Delhi</div>
+                    <div class="duration">2019 – 2021</div>
+                </li>
+                <li class="experience-item">
+                    <div class="position">Senior Research Fellow (SRF)</div>
+                    <div class="organization">SRM University, Chennai</div>
+                    <div class="duration">2016 – 2018</div>
+                    <div class="sponsor">Sponsored by CSIR</div>
+                </li>
+                <li class="experience-item">
+                    <div class="position">Junior Research Fellow (JRF)</div>
+                    <div class="organization">SRM University, Chennai</div>
+                    <div class="duration">2013 – 2016</div>
+                    <div class="sponsor">Sponsored by SERB, DST</div>
+                </li>
+            </ul>
         </div>
     </section>
 
@@ -1331,7 +1424,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>© Copyright 2025 Biswarup Biswas - All Rights Reserved</p>
+        <p>© Copyright 2026 Biswarup Biswas - All Rights Reserved</p>
     </footer>
 
     <script>
@@ -1341,7 +1434,7 @@
 
         // Initialize theme on page load
         window.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedTheme = localStorage.getItem('theme') || 'dark';
             
             if (savedTheme === 'dark') {
                 body.classList.add('dark-theme');
