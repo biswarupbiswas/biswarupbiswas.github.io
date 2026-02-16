@@ -1,902 +1,1333 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<!-- Site made with Mobirise Website Builder v4.12.4, https://mobirise.com -->
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Mobirise v4.12.4, mobirise.com">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-<link rel="shortcut icon" href="assets/images/eg12-80x80-surf-128x96-128x96.png" type="image/x-icon">
-<meta name="description" content="Home page of Biswarup Biswas.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biswarup Biswas - Assistant Professor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            /* Dark theme */
+            --dark-bg: #0a0e27;
+            --dark-card-bg: #1a1f3a;
+            --dark-text-light: #e0e0e0;
+            --dark-text-muted: #a0a0a0;
+            --dark-border: #2a2f4a;
+            
+            /* Light theme */
+            --light-bg: #f5f5f5;
+            --light-card-bg: #ffffff;
+            --light-text-light: #1a1a1a;
+            --light-text-muted: #555555;
+            --light-border: #e0e0e0;
+            
+            /* Accent (same for both) */
+            --accent: #ff6b6b;
+            --accent-light: #ffa8a8;
+        }
 
-<title>Biswarup Biswas</title>
-<link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
-<link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
-<link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-<link rel="stylesheet" href="assets/dropdown/css/style.css">
-<link rel="stylesheet" href="assets/socicon/css/styles.css">
-<link rel="stylesheet" href="assets/tether/tether.min.css">
-<link rel="stylesheet" href="assets/datatables/data-tables.bootstrap4.min.css">
-<link rel="stylesheet" href="assets/theme/css/style.css">
-<link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
-<link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+        /* Light theme (default) */
+        body {
+            --bg: var(--light-bg);
+            --card-bg: var(--light-card-bg);
+            --text-light: var(--light-text-light);
+            --text-muted: var(--light-text-muted);
+            --border-color: var(--light-border);
+        }
 
+        /* Dark theme */
+        body.dark-theme {
+            --bg: var(--dark-bg);
+            --card-bg: var(--dark-card-bg);
+            --text-light: var(--dark-text-light);
+            --text-muted: var(--dark-text-muted);
+            --border-color: var(--dark-border);
+        }
 
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
 
+        /* Blur to Clear Animation */
+        @keyframes blurToClean {
+            0% {
+                filter: blur(10px);
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                filter: blur(0);
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: blurToClean 0.8s ease-out;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(245, 245, 245, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-theme nav {
+            background: rgba(10, 14, 39, 0.95);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: color 0.3s, transform 0.3s;
+            padding: 0.5rem;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent);
+            transform: rotate(20deg);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--card-bg);
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-menu.active {
+                max-height: 500px;
+            }
+
+            .nav-menu li {
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 1rem 2rem;
+            }
+
+            .nav-menu a::after {
+                display: none;
+            }
+
+            .nav-right {
+                gap: 1rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(10, 14, 39, 0) 100%);
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.3s ease;
+        }
+
+        body.dark-theme .hero {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.08) 0%, rgba(245, 245, 245, 0) 100%);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 10px;
+            border: 2px solid var(--accent);
+            transition: transform 0.3s;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .about-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.9;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .about-text a:hover {
+            color: var(--accent-light);
+        }
+
+        .interests-box {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .interests-box:hover {
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.1);
+        }
+
+        .interests-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tag {
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid var(--accent);
+            color: var(--accent-light);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            background: var(--accent);
+            color: var(--dark-bg);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateX(10px);
+            background: rgba(26, 31, 58, 0.8);
+        }
+
+        body.dark-theme .project-card:hover {
+            background: rgba(255, 107, 107, 0.05);
+        }
+
+        .project-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .project-meta strong {
+            color: var(--text-light);
+        }
+
+        .funding-badge {
+            background: rgba(255, 107, 107, 0.2);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Publications */
+        .pub-list {
+            list-style: none;
+        }
+
+        .pub-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+        }
+
+        .pub-item:hover {
+            transform: translateX(5px);
+            background: rgba(26, 31, 58, 0.8);
+        }
+
+        body.dark-theme .pub-item:hover {
+            background: rgba(255, 107, 107, 0.05);
+        }
+
+        .pub-year {
+            display: inline-block;
+            background: rgba(255, 107, 107, 0.2);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .pub-item strong {
+            color: var(--accent-light);
+            font-size: 0.95rem;
+        }
+
+        .pub-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        .pub-item a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .pub-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Teaching Section */
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: var(--card-bg);
+            padding: 1.8rem;
+            border-radius: 10px;
+            border-top: 3px solid var(--accent);
+            transition: all 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.1);
+        }
+
+        .course-code {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .course-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin: 0.8rem 0;
+            font-weight: 600;
+        }
+
+        .course-name a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .course-name a:hover {
+            color: var(--accent);
+        }
+
+        .course-name a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .course-name a:hover::after {
+            width: 100%;
+        }
+
+        .course-details {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .course-role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 0.8rem;
+        }
+
+        /* Education Section */
+        .education-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+
+        .education-item {
+            margin-bottom: 3rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 5px;
+            width: 18px;
+            height: 18px;
+            background: var(--bg);
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+        }
+
+        .education-item .degree {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .education-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin: 0.5rem 0;
+        }
+
+        .education-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0.4rem 0;
+        }
+
+        /* Honors */
+        .honors-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            margin-top: 3rem;
+            transition: background 0.3s ease;
+        }
+
+        .honors-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .honors-section ul {
+            list-style: none;
+        }
+
+        .honors-section li {
+            color: var(--text-light);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        .honors-section li::before {
+            content: '✓ ';
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 0.8rem;
+        }
+
+        .honors-section li:last-child {
+            border-bottom: none;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            border-top: 3px solid var(--accent);
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .contact-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        .contact-card a {
+            color: var(--accent);
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent-light);
+        }
+
+        .contact-card strong {
+            color: var(--text-light);
+        }
+
+        .cv-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark-bg);
+            padding: 1rem 2.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .cv-btn:hover {
+            background: var(--accent-light);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            transition: background 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-brand {
+                font-size: 1.4rem;
+            }
+
+            .hero {
+                margin-top: 70px;
+                padding: 2rem 1rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-image img {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+
+            .section {
+                padding: 2.5rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .teaching-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-container {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.8rem;
+            }
+
+            .nav-container {
+                padding: 0;
+            }
+
+            .nav-brand {
+                font-size: 1.2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .course-name {
+                font-size: 1rem;
+            }
+
+            .education-item {
+                padding-left: 1.5rem;
+            }
+
+            .education-item::before {
+                left: -7px;
+            }
+
+            .interests-box {
+                padding: 1.5rem;
+            }
+
+            .pub-item {
+                padding: 1.2rem;
+            }
+
+            .contact-card {
+                padding: 1.5rem;
+            }
+
+            .cv-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-<section class="menu cid-sb7VDTQM13" once="menu" id="menu1-6">
-
-
-
-<nav
-class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
-<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-aria-label="Toggle navigation">
-<div class="hamburger">
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-</div>
-</button>
-<div class="menu-logo">
-<div class="navbar-brand">
-
-<span class="navbar-caption-wrap"><a class="navbar-caption text-white display-5" href="index.html">
-Biswarup Biswas</a></span>
-</div>
-</div>
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
-<ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-<li class="nav-item">
-<a class="nav-link link text-white display-4" href="index.html#content2-1"><span
-class="mbri-github mbr-iconfont mbr-iconfont-btn"></span>
-
-About me</a>
-</li>
-<li class="nav-item"><a class="nav-link link text-white display-4"
-href="index.html#content4-t"><span class="mbri-pages mbr-iconfont mbr-iconfont-btn"></span>
-
-Publications</a></li>
-<li class="nav-item"><a class="nav-link link text-white display-4"
-href="index.html#content4-2"><span
-class="mbri-edit mbr-iconfont mbr-iconfont-btn"></span>Teaching</a></li>
-<li class="nav-item"><a class="nav-link link text-white display-4"
-href="index.html#social-buttons1-4"><span
-class="mbri-chat mbr-iconfont mbr-iconfont-btn"></span>Seminars</a></li>
-<li class="nav-item"><a class="nav-link link text-white display-4"
-href="index.html#content4-x"><span class="mbrib-file mbr-iconfont mbr-iconfont-btn"></span>
-
-Education</a></li>
-<li class="nav-item"><a class="nav-link link text-white display-4"
-href="index.html#content4-7"><span
-class="mbri-contact-form mbr-iconfont mbr-iconfont-btn"></span>Contact</a></li>
-</ul>
-
-</div>
-</nav>
-</section>
-
-<section class="engine"><a href="https://mobirise.info/z">best website templates</a></section>
-<section class="carousel slide testimonials-slider cid-sb7eOIbreY" data-interval="false"
-id="testimonials-slider1-0">
-
-
-
-
-
-<div class="container text-center">
-
-
-<div class="carousel slide" role="listbox" data-pause="true" data-keyboard="false" data-ride="false"
-data-interval="false">
-<div class="carousel-inner">
-
-
-<div class="carousel-item">
-<div class="user col-md-8">
-<div class="user_image">
-<img src="assets/images/biswarup-biswas-332x390.jpg" alt="" title="">
-</div>
-<div class="user_text pb-3">
-<p class="mbr-fonts-style display-7"><em><br></em><em>Assistant professor,</em><br>
-Mahindra University, Hyderabad</p>
-</div>
-
-
-</div>
-</div>
-<div class="carousel-item">
-<div class="user col-md-8">
-<div class="user_image">
-<img src="assets/images/42687627-1806796456104466-9028849239987322880-o-314x239.jpg"
-alt="" title="">
-</div>
-<div class="user_text pb-3">
-<p class="mbr-fonts-style display-7"><em>Assistant professor,
-</em><br>Mahindra University, Hyderabad</p>
-</div>
-
-
-</div>
-</div>
-<div class="carousel-item">
-<div class="user col-md-8">
-<div class="user_image">
-<img src="assets/images/photo-2021-03-13-12-52-30-190x153.jpg" alt="" title="">
-</div>
-<div class="user_text pb-3">
-<p class="mbr-fonts-style display-7"><em>Assistant professor,
-</em><br>Mahindra University, Hyderabad</p>
-</div>
-
-
-</div>
-</div>
-<div class="carousel-item">
-<div class="user col-md-8">
-<div class="user_image">
-<img src="assets/images/photo-2021-03-13-12-52-31-170x169.jpg" alt="" title="">
-</div>
-<div class="user_text pb-3">
-<p class="mbr-fonts-style display-7"><em>Assistant professor,
-</em><br>Mahindra University, Hyderabad</p>
-</div>
-
-
-</div>
-</div>
-</div>
-
-<div class="carousel-controls">
-<a class="carousel-control-prev" role="button" data-slide="prev">
-<span aria-hidden="true" class="mbri-arrow-prev mbr-iconfont"></span>
-<span class="sr-only">Previous</span>
-</a>
-
-<a class="carousel-control-next" role="button" data-slide="next">
-<span aria-hidden="true" class="mbri-arrow-next mbr-iconfont"></span>
-<span class="sr-only">Next</span>
-</a>
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section article content1 cid-sb7gNxKeAS" id="content2-1">
-
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-<blockquote>
-<p><span style="font-size: 1.09rem;">Biswarup Biswas </span><span
-style="font-size: 1.09rem; font-style: normal;">currently works at &nbsp;<a
-href="https://www.mahindrauniversity.edu.in/" target="_blank">Mahindra
-University</a>&nbsp;(MU) as an Assistant Professor. Before joining MU he was a Post
-Doctoral Fellow at <a href="https://home.iitd.ac.in/" target="_blank">IIT Delhi</a>,
-where he worked with the group of <a href="https://hkkaushik.wordpress.com"
-target="_blank">Prof. Harish Kumar</a>. He earned his PhD from <a
-href="http://www.srmist.edu.in" class="text-primary" target="_blank">SRM Institute
-of Science and Technology&nbsp;</a>under the supervision of <a
-href="https://www.srmist.edu.in/research-opportunities-details/9837"
-class="text-primary" target="_blank">Prof. Ritesh Kumar Dubey</a>. He completed his
-MSc from <a href="https://www.iitm.ac.in/" class="text-primary" target="_blank">IIT
-Madras</a>.</span><br></p>
-<p><span style="font-style: normal;">He works in the area of computational methods for Balance
-Laws. Most of his PhD works are on the area of higher-order provably stable methods for
-hyperbolic conservation laws. Currently, he is working on stable schemes for various
-astrophysical problems.</span></p>
-<p><span style="font-style: normal;">Some of his current interests are:</span></p>
-<p>Entropy Stable schemes, DG schemes, Stability of numerical schemes for Hyperbolic
-Conservation Laws, Deep learning, Numerical schemes for Hamilton Jacobi equations, Numerical
-schemes for Reaction-Diffusion equations.</p>
-</blockquote>
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section content4 cid-sb7BW607aP" id="opportunities">
-
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="title col-12 col-md-8">
-<h2 class="align-center pb-3 mbr-fonts-style display-5">Whats new?</h2>
-
-
-</div>
-</div>
-</div>
-</section>
-<section class="mbr-section article content12 cid-sbLj1me018" id="content12-4">
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
-<ul>
-<li><strong>&nbsp;</strong> A SERB, Govt. of India sponsored JRF position is available to work
-in my group (email me for details)</a>&nbsp;</li>
-<li><strong>&nbsp;</strong> A PhD position is available to work in my group (Candidates who do
-not have a JRF may apply for our University fellowship. Our University offers a fellowship
-of 30k/month with food and accommodation, effectively around 45k/month)</a>&nbsp;</li>
-
-</ul>
-</div>
-</div>
-</div>
-</section>
-
-
-<section class="mbr-section content4 cid-sb7BW607aP" id="project-section">
-
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="title col-12 col-md-8">
-<h2 class="align-center pb-3 mbr-fonts-style display-5">Projects</h2>
-
-
-</div>
-</div>
-</div>
-</section>
-<section class="mbr-section article content11 cid-sb7BuxKfjy" id="projects">
-<div class="container">
-<div class="media-container-row">
-<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
-<ol>
-<li> "Simulation of relativistic astrophysical flow problems using modern efficient stable
-schemes" sponcered by &nbsp;<a href="https://www.serb.gov.in/" target="_blank">SERB, Govt.
-of India</a>&nbsp;. (Total Cost: 19.6L (approx))</li>
-</ol>
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section content4 cid-sb7BW607aP" id="content4-t">
-
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="title col-12 col-md-8">
-<h2 class="align-center pb-3 mbr-fonts-style display-5">Publications</h2>
-
-
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section article content11 cid-sb7BuxKfjy" id="content11-s">
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
-<ol>
-<li>Biswas, B., Kumar, H., &amp; Bhoriya, D. (2022). Entropy stable discontinuous Galerkin
-schemes for the special relativistic hydrodynamics equations. Computers and Mathematics with
-Applications. &nbsp;&nbsp;<a href="https://doi.org/10.1016/j.camwa.2022.02.019"
-class="text-primary" target="_blank"
-style="font-size: 1rem; background-color: rgb(255, 255, 255);">https://doi.org/10.1016/j.camwa.2022.02.019</a>
-</li>
-<li>&nbsp;Biswas, B., Kumar, H., &amp; Yadav, A. (2021). Entropy stable discontinuous Galerkin
-methods for ten-moment Gaussian closure equations. Journal of Computational
-Physics.&nbsp;&nbsp;<a href="https://doi.org/10.1016/j.jcp.2021.110148" class="text-primary"
-target="_blank"
-style="font-size: 1rem; background-color: rgb(255, 255, 255);">https://doi.org/10.1016/j.jcp.2021.110148</a>
-</li>
-<li>&nbsp;Biswas, B., &amp; Dubey, R. K. (2020). ENO and WENO Schemes using Arc-length based
-Smoothness Measurement. Computers and Mathematics with Applications, 80(12). <a
-href="https://doi.org/10.1016/j.camwa.2020.10.005" class="text-primary"
-target="_blank">https://doi.org/10.1016/j.camwa.2020.10.005</a></li>
-<li>Samala, R., &amp; Biswas, B. (2020). Arc Length-Based WENO Scheme for Hamilton–Jacobi
-Equations. Communications on Applied Mathematics and Computation. <a
-href="https://doi.org/10.1007/s42967-020-00091-5"
-target="_blank">https://doi.org/10.1007/s42967-020-00091-5</a></li>
-<li>Dubey, R. K., &amp; Biswas, B. (2018). Suitable diffusion for constructing non-oscillatory
-entropy stable schemes. Journal of Computational Physics, 372. <a
-href="https://doi.org/10.1016/j.jcp.2018.04.037"
-target="_blank">https://doi.org/10.1016/j.jcp.2018.04.037</a></li>
-<li>Biswas, B., &amp; Dubey, R. K. (2018). Low dissipative entropy stable schemes using third
-order WENO and TVD reconstructions. Advances in Computational Mathematics, 44(4). <a
-href="https://doi.org/10.1007/s10444-017-9576-2  "
-target="_blank">https://doi.org/10.1007/s10444-017-9576-2 &nbsp;</a></li>
-<li>Dubey, R. K., &amp; Biswas, B. (2017). An Analysis on Induced Numerical Oscillations by
-Lax-Friedrichs Scheme. Differential Equations and Dynamical Systems, 25(2). <a
-href="https://doi.org/10.1007/s12591-016-0311-0"
-target="_blank">https://doi.org/10.1007/s12591-016-0311-0</a> &nbsp;
-</li>
-<li>
-<span style="font-size: 1rem;">Dubey, R. K., Biswas, B., &amp; Gupta, V. (2016). Local
-maximum principle satisfying high-order non-oscillatory schemes. International Journal
-for Numerical Methods in Fluids, 81(11). <a href="https://doi.org/10.1002/fld.4202"
-target="_blank">https://doi.org/10.1002/fld.4202</a>&nbsp;&nbsp;</span>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section content8 cid-sb7CBLJM7M" id="content8-u">
-
-
-
-<div class="container">
-<div class="media-container-row title">
-<div class="col-12 col-md-8">
-<div class="mbr-section-btn align-center"><a class="btn btn-primary display-4"
-href="https://www.researchgate.net/profile/Biswarup_Biswas/publications" target="_blank">See
-more</a></div>
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section content4 cid-sbATLpLilC" id="content4-2">
-
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="title col-12 col-md-8">
-<h2 class="align-center pb-3 mbr-fonts-style display-5">Teaching</h2>
-
-
-</div>
-</div>
-</div>
-</section>
-
-<section class="section-table cid-sbAVAZJH0W" id="table1-5">
-
-
-
-<div class="container container-table">
-
-
-<div class="table-wrapper">
-<div class="container">
-<div class="row search">
-<div class="col-md-6"></div>
-<div class="col-md-6">
-<div class="dataTables_filter">
-<label class="searchInfo mbr-fonts-style display-7">Search:</label>
-<input class="form-control input-sm" disabled="">
-</div>
-</div>
-</div>
-</div>
-
-<div class="container scroll">
-<table class="table isSearch" cellspacing="0">
-<thead>
-<tr class="table-heads ">
-
-
-
-
-<th class="head-item mbr-fonts-style display-7">
-Role</th>
-<th class="head-item mbr-fonts-style display-7">
-Course Title</th>
-<th class="head-item mbr-fonts-style display-7">
-Place</th>
-<th class="head-item mbr-fonts-style display-7">
-Duration</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr>
-<td class="body-item mbr-fonts-style display-7">Instructor</td>
-<td class="body-item mbr-fonts-style display-7">
-<a href="http://maths.iitd.ac.in/drupal/courses/mtl290" target="_blank">MTP290
-COMPUTING LABORATORY</a>
-</td>
-<td class="body-item mbr-fonts-style display-7">IIT Delhi</td>
-<td class="body-item mbr-fonts-style display-7">Spring 2020</td>
-</tr>
-
-<tr>
-<td class="body-item mbr-fonts-style display-7">Tutorial Teacher</td>
-<td class="body-item mbr-fonts-style display-7">
-<a href="http://maths.iitd.ac.in/drupal/courses/mtl712" target="_blank">MTL712 COMP.
-METHODS FOR DIFFER. EQU.</a>
-</td>
-<td class="body-item mbr-fonts-style display-7">IIT Delhi</td>
-<td class="body-item mbr-fonts-style display-7">Fall 2019</td>
-</tr>
-
-<tr>
-<td class="body-item mbr-fonts-style display-7">Tutorial Teacher</td>
-<td class="body-item mbr-fonts-style display-7">
-<a href="http://maths.iitd.ac.in/drupal/courses/mtl100" target="_blank">MTL100
-CALCULUS</a>
-</td>
-<td class="body-item mbr-fonts-style display-7">IIT Delhi</td>
-<td class="body-item mbr-fonts-style display-7">Fall 2020, Spring 2021</td>
-</tr>
-
-<tr>
-<td class="body-item mbr-fonts-style display-7">Tutorial Teacher</td>
-<td class="body-item mbr-fonts-style display-7">
-<a href="http://maths.iitd.ac.in/drupal/courses/mtl290" class="text-primary"
-target="_blank">MTP290 COMPUTING LABORATORY</a>
-</td>
-<td class="body-item mbr-fonts-style display-7">IIT Delhi</td>
-<td class="body-item mbr-fonts-style display-7">Spring 2021</td>
-</tr>
-
-<tr>
-<td class="body-item mbr-fonts-style display-7">Instructor</td>
-<td class="body-item mbr-fonts-style display-7">
-<a href="https://biswarupbiswas.github.io/MA2107" class="text-primary"
-target="_blank">MA2107 PROGRAMMING WORKSHOP</a>
-</td>
-<td class="body-item mbr-fonts-style display-7">Mahindra University</td>
-<td class="body-item mbr-fonts-style display-7">Fall 2021, Fall 2022, Fall 2023, Fall
-2024</td>
-</tr>
-
-<tr>
-<td class="body-item mbr-fonts-style display-7">Tutorial Teacher</td>
-<td class="body-item mbr-fonts-style display-7">MA203 MATHS-III (Probability and
-Statistics)</td>
-<td class="body-item mbr-fonts-style display-7">Mahindra University</td>
-<td class="body-item mbr-fonts-style display-7">Fall 2021, Fall 2022, Fall 2023, Fall
-2024, Fall 2025</td>
-</tr>
-
-<tr>
-<td class="body-item mbr-fonts-style display-7">Instructor</td>
-<td class="body-item mbr-fonts-style display-7">MA6004 Scientific Computing</td>
-<td class="body-item mbr-fonts-style display-7">Mahindra University</td>
-<td class="body-item mbr-fonts-style display-7">Fall 2022, Fall 2023, Fall 2024, Fall
-2025</td>
-</tr>
-
-<tr>
-<td class="body-item mbr-fonts-style display-7">Coordinator, Instructor</td>
-<td class="body-item mbr-fonts-style display-7">
-<a href="https://biswarupbiswas.github.io/MA2208" class="text-primary"
-target="_blank">MA2208 Numerical Methods</a>
-</td>
-<td class="body-item mbr-fonts-style display-7">Mahindra University</td>
-<td class="body-item mbr-fonts-style display-7">Spring 2022, Spring 2023, Spring 2024,
-Spring 2025</td>
-</tr>
-
-<tr>
-<td class="body-item mbr-fonts-style display-7">Instructor</td>
-<td class="body-item mbr-fonts-style display-7">MA4401 Advanced Numerical Methods</td>
-<td class="body-item mbr-fonts-style display-7">Mahindra University</td>
-<td class="body-item mbr-fonts-style display-7">Fall 2025</td>
-</tr>
-
-<tr>
-<td class="body-item mbr-fonts-style display-7">Instructor</td>
-<td class="body-item mbr-fonts-style display-7">Advanced Linear Algebra and Probability Theory</td>
-<td class="body-item mbr-fonts-style display-7">Mahindra University</td>
-<td class="body-item mbr-fonts-style display-7">Spring 2026</td>
-</tr>
-
-<tr>
-<td class="body-item mbr-fonts-style display-7">Instructor</td>
-<td class="body-item mbr-fonts-style display-7">
-<a href="https://biswarupbiswas.github.io/MA2221" class="text-primary"
-target="_blank">
-MA2221 Foundational Mathematics for ML</a>
-</td>
-<td class="body-item mbr-fonts-style display-7">Mahindra University</td>
-<td class="body-item mbr-fonts-style display-7">Spring 2026</td>
-</tr>
-
-</tbody>
-
-
-</table>
-</div>
-<div class="container table-info-container">
-<div class="row info">
-<div class="col-md-6">
-<div class="dataTables_info mbr-fonts-style display-7">
-<span class="infoBefore">Showing</span>
-<span class="inactive infoRows"></span>
-<span class="infoAfter">entries</span>
-<span class="infoFilteredBefore">(filtered from</span>
-<span class="inactive infoRows"></span>
-<span class="infoFilteredAfter"> total entries)</span>
-</div>
-</div>
-<div class="col-md-6"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section class="cid-sbLsq3VGN0" id="social-buttons1-4">
-
-
-
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="col-md-8 align-center">
-<h2 class="pb-3 mbr-section-title mbr-fonts-style display-5">
-Seminars</h2>
-<div>
-<div class="mbr-social-likes" data-counters="false">
-
-
-
-
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section article content12 cid-sbLj1me018" id="content12-4">
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
-<ul>
-<li><strong>&nbsp;</strong>(As a PDF applicant) <strong>Entropy stable discontinuous Galerkin
-methods for ten-moment Gaussian closure equations. </strong>TIFR CAM, Bangalore. <a
-href="https://www.math.tifrbng.res.in/events/tba-blocked-for-pdf-talk-2"
-class="text-primary">Link</a></li>
-<li>(Invited talk)<strong> Introduction to machine learning with some applications.
-</strong>Organized by<strong>&nbsp;</strong>Government Polytechnic Kishanganj (Department of
-Science and Technology),
-&nbsp;<span style="font-size: 1rem;">Government of Bihar.</span></li>
-<li><span style="font-size: 1rem;">&nbsp;(As a PDF applicant)</span><span
-style="font-weight: bold; font-size: 1rem;"> Development of Entropy Stable TVD and TVB
-schemes for
-&nbsp;</span><strong>hyperbolic conservation laws.</strong> Department of
-mathematics,&nbsp;IIT Delhi. <a href="http://maths.iitd.ac.in/drupal/node/156"
-target="_blank">Link</a>&nbsp;</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section content4 cid-sb7ES4QFCy" id="content4-x">
-
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="title col-12 col-md-8">
-<h2 class="align-center pb-3 mbr-fonts-style display-5">Education</h2>
-
-
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section article content12 cid-sb7DxJ0Kdm" id="content12-w">
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
-<ul>
-<li><strong>Ph.D. in Mathematics (September 2018 )</strong>&nbsp;-
-SRM Institute of Science and Technology, Kattankulathur, India. <em>Thesis title</em>: Non
-Linearly Stable High Order Accurate Efficient Schemes for System of Hyperbolic Conservation
-Laws.&nbsp;</li>
-<li><strong>M. Sc. in Mathematics (July 2013)</strong>&nbsp;CGPA-8.41, IIT Madras, Chennai,
-India</li>
-<li><strong>B. Sc. in Mathematics (May 2010)</strong>&nbsp; Percentage-79.37, University of
-Kalyani, West Bengal, India</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section content4 cid-sb7ze7bY0F" id="content4-p">
-
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="title col-12 col-md-8">
-<h2 class="align-center pb-3 mbr-fonts-style display-5">Scholastic Achievements</h2>
-
-
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section article content12 cid-sb7z155BHT" id="content12-o">
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
-<ul>
-<li>&nbsp;Institute Postdoctoral Fellowship (IPDF) from IIT Delhi, India.</li>
-<li> Awarded National Postdoctoral Fellowship (N-PDF) by SERB, Govt. of India.
-</li>
-<li>Awarded CSIR Senior Research Fellowship (SRF) for PhD.</li>
-<li>Passed National examination CSIR-UGC NET for Lectureship.
-</li>
-<li>Secured all India rank 121 in IIT JAM examination for Post Graduation study in IIT’s.
-</li>
-<li>IIT Madras Merit Cum scholarship.
-</li>
-<li>Best paper presentation in international conference NDETMC-2017.
-</li>
-<li>Awarded Gold Medal in Research Day (2014) at SRM University.
-</li>
-<li>West Bengal merit cum means scholarship for Post Graduation study.</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section content4 cid-sb7A7H4wtg" id="content4-r">
-
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="title col-12 col-md-8">
-<h2 class="align-center pb-3 mbr-fonts-style display-5">Workshop and Training program</h2>
-
-
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section article content12 cid-sb7zJ1RSAR" id="content12-q">
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
-<ul>
-<li><span style="font-size: 1rem;">Selected for contributed paper in Conference on Computational
-PDE 2015 at TIFR CAM, Bengaluru. http://cpde.tifrbng.res.in/2015/contrib</span><br></li>
-<li><span style="font-size: 1rem;">International IFCAM Workshop on Control and Numerics for
-Fluid-Structure Interaction Problems (June 29 -July 1, 2015). TIFR CAM,
-Bengaluru.</span><br></li>
-<li><span style="font-size: 1rem;">Advanced Summer School on Control and Numerics for
-Fluid-Structure Interaction Problems (22-26 June, 2015). TIFR CAM, Bengaluru.</span><br>
-</li>
-<li><span style="font-size: 1rem;">ADVANCED LEVEL WORKSHOP “COMPUTATIONAL METHODS FOR CONTROL ON
-PROBLEMS” (March 16-21, 2015) Jointly organized by Indian Institute of Space and
-Technology(IIST), Trivandrum and Mar Ivanios College, Trivandrum (Autonomous)</span><br>
-</li>
-<li><span style="font-size: 1rem;">Attended the NPDE~TCA postgraduate level training program on
-differential equations in IIT Madras, 2013.</span><br></li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section content4 cid-sb7XHjeZcA" id="content4-7">
-
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="title col-12 col-md-8">
-<h2 class="align-center pb-3 mbr-fonts-style display-5">Contact</h2>
-
-
-</div>
-</div>
-</div>
-</section>
-
-<section class="toggle1 cid-sb7LConSX7" id="toggle1-11">
-
-
-
-
-<div class="container">
-<div class="media-container-row">
-<div class="col-12 col-md-8">
-<div class="section-head text-center space30">
-
-</div>
-<div class="clearfix"></div>
-<div id="bootstrap-toggle" class="toggle-panel accordionStyles tab-content">
-<div class="card">
-<div class="card-header" role="tab" id="headingOne">
-<a role="button" class="collapsed panel-title text-black" data-toggle="collapse"
-data-core="" href="#collapse1_19" aria-expanded="false" aria-controls="collapse1">
-<h4 class="mbr-fonts-style display-7">
-<span class="sign mbr-iconfont mbri-arrow-down inactive"></span>Email
-</h4>
-</a>
-</div>
-<div id="collapse1_19" class="panel-collapse noScroll collapse" role="tabpanel"
-aria-labelledby="headingOne">
-<div class="panel-body p-4">
-<p class="mbr-fonts-style panel-text display-7">
-Personal:&nbsp;<a
-href="mailto:biswarupb7@gmail.com">biswarupb7[at]gmail.com</a><br>Official
-&nbsp; &nbsp;:&nbsp;<a
-href="mailto:biswarup.biswas@mahindrauniversity.edu.in">biswarup.biswas[at]mahindrauniversity.edu.in</a>
-</p>
-</div>
-</div>
-</div>
-
-
-
-
-
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section class="mbr-section content8 cid-sBBAbzCU1v" id="content8-o">
-
-
-
-<div class="container">
-<div class="media-container-row title">
-<div class="col-12 col-md-8">
-<div class="mbr-section-btn align-center"><a class="btn btn-primary display-4"
-href="assets/files/CV_of_Biswarup_Biswas.pdf">Download CV</a></div>
-</div>
-</div>
-</div>
-</section>
-
-<section class="cid-sbBptxBboh mbr-reveal" id="footer1-8">
-
-
-
-
-
-<div class="container">
-<div class="media-container-row content text-white">
-<div class="col-12 col-md-3">
-<div class="media-wrap">
-
-<a href="#top"><img
-src="assets/images/92014931-2782145358569566-8397625502881284096-o-186x173.jpg"
-alt="Top" title=""></a>
-
-</div>
-</div>
-<div class="col-12 col-md-3 mbr-fonts-style display-7">
-<h5 class="pb-3">
-Address
-</h5>
-<p class="mbr-text">Department of Mathematics<br>Mahindra University,&nbsp;Hyderabad - 500043 -
-Telangana, India</p>
-</div>
-<div class="col-12 col-md-3 mbr-fonts-style display-7">
-<h5 class="pb-3">
-Contacts
-</h5>
-<p class="mbr-text">
-Email: biswarup.biswas[at]mahindra...</p>
-</div>
-<div class="col-12 col-md-3 mbr-fonts-style display-7">
-<h5 class="pb-3">
-Links
-</h5>
-<p class="mbr-text"><a class="text-primary"
-href="https://www.mahindraecolecentrale.edu.in/faculties/mathematics"
-target="_blank">Mathematics, Mahindra University&nbsp;</a><br><a class="text-primary"
-href="https://math.stackexchange.com/" target="_blank">Mathematics Stack Exchange</a><br><a
-class="text-primary" href="http://nptel.ac.in/" target="_blank"></a><a
-href="https://hartwork.org/beamer-theme-matrix/" target="_blank">Some attractive beamer
-themes</a><br></p>
-</div>
-</div>
-<div class="footer-lower">
-<div class="media-container-row">
-<div class="col-sm-12">
-<hr>
-</div>
-</div>
-<div class="media-container-row mbr-white">
-<div class="col-sm-6 copyright">
-<p class="mbr-text mbr-fonts-style display-7">
-© <em>Copyright 2021 Biswarup Biswas - All Rights Reserved
-</em></p>
-</div>
-<div class="col-md-6">
-<div class="social-list align-right">
-<div class="soc-item">
-<a href="https://scholar.google.co.in/citations?user=2h3NBbsAAAAJ" target="_blank">
-<span
-class="mbr-iconfont mbr-iconfont-social socicon-google-scholar socicon"></span>
-</a>
-</div>
-<div class="soc-item">
-<a href="https://www.researchgate.net/profile/Biswarup_Biswas" target="_blank">
-<span class="mbr-iconfont mbr-iconfont-social socicon-researchgate socicon"></span>
-</a>
-</div>
-<div class="soc-item">
-<a href="https://scholar.google.co.in/citations?user=2h3NBbsAAAAJ&hl=en"
-target="_blank">
-<span class="mbr-iconfont mbr-iconfont-social socicon-googlescholar socicon"></span>
-</a>
-</div>
-<div class="soc-item">
-<a href="https://twitter.com/BiswarupBiswas" target="_blank">
-<span class="mbr-iconfont mbr-iconfont-social socicon-twitter socicon"></span>
-</a>
-</div>
-<div class="soc-item">
-<a href="https://github.com/biswarupbiswas" target="_blank">
-<span class="mbr-iconfont mbr-iconfont-social mbri-github"></span>
-</a>
-</div>
-<div class="soc-item">
-<a href="https://orcid.org/0000-0001-7771-6400" target="_blank">
-<span class="mbr-iconfont mbr-iconfont-social mobi-mbri-user mobi-mbri"
-style="color: rgb(191, 227, 40); fill: rgb(191, 227, 40);"></span>
-</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-
-<script src="assets/web/assets/jquery/jquery.min.js"></script>
-<script src="assets/popper/popper.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/dropdown/js/nav-dropdown.js"></script>
-<script src="assets/dropdown/js/navbar-dropdown.js"></script>
-<script src="assets/mbr-testimonials-slider/mbr-testimonials-slider.js"></script>
-<script src="assets/smoothscroll/smooth-scroll.js"></script>
-<script src="assets/sociallikes/social-likes.js"></script>
-<script src="assets/mbr-switch-arrow/mbr-switch-arrow.js"></script>
-<script src="assets/bootstrapcarouselswipe/bootstrap-carousel-swipe.js"></script>
-<script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-<script src="assets/tether/tether.min.js"></script>
-<script src="assets/datatables/jquery.data-tables.min.js"></script>
-<script src="assets/datatables/data-tables.bootstrap4.min.js"></script>
-<script src="assets/theme/js/script.js"></script>
-
-
-</body>
-
-</html>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="nav-brand">Biswarup Biswas</a>
+            <div class="nav-right">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#teaching">Teaching</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#seminars">Seminars</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark/light theme">
+                    🌙
+                </button>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Biswarup Biswas</h1>
+                <div class="subtitle">Assistant Professor</div>
+                <p>Mahindra University, Hyderabad</p>
+                <p>Computational mathematician specializing in hyperbolic conservation laws, entropy stable schemes, and numerical analysis for astrophysical applications.</p>
+            </div>
+            <div class="hero-image">
+                <img src="assets/images/biswarup-biswas-332x390.jpg" alt="Biswarup Biswas">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="section-container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I am currently an Assistant Professor at <a href="https://www.mahindrauniversity.edu.in/">Mahindra University</a>, Hyderabad, where I work on computational methods for balance laws.</p>
+                    <p>Before joining Mahindra University, I was a Post Doctoral Fellow at <a href="https://home.iitd.ac.in/">IIT Delhi</a>, where I worked with <a href="https://hkkaushik.github.io/">Prof. Harish Kumar</a> on the development of entropy stable methods.</p>
+                    <p>I earned my PhD from <a href="http://www.srmist.edu.in">SRM Institute of Science and Technology</a> under the supervision of <a href="https://www.srmist.edu.in/faculty/dr-ritesh-kumar-dubey/">Prof. Ritesh Kumar Dubey</a>. I completed my MSc from <a href="https://www.iitm.ac.in/">IIT Madras</a>.</p>
+                    <p><strong>Current Focus:</strong> I am working on stable schemes for various astrophysical problems including simulations of relativistic flows and developing efficient numerical methods with theoretical guarantees.</p>
+                </div>
+                <div class="interests-box">
+                    <h3>Research Interests</h3>
+                    <div class="tags">
+                        <span class="tag">Entropy Stable Schemes</span>
+                        <span class="tag">DG Schemes</span>
+                        <span class="tag">Hyperbolic Conservation Laws</span>
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">Hamilton-Jacobi Equations</span>
+                        <span class="tag">Reaction-Diffusion Equations</span>
+                        <span class="tag">Numerical Methods</span>
+                        <span class="tag">Astrophysical Flows</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Section -->
+    <section class="section" id="teaching">
+        <div class="section-container">
+            <h2 class="section-title">Teaching</h2>
+            <div class="teaching-grid">
+                <div class="course-card">
+                    <div class="course-code">MA2221</div>
+                    <div class="course-name"><a href="https://biswarupbiswas.github.io/MA2221">Foundational Mathematics for ML</a></div>
+                    <div class="course-details">
+                        <strong>Mahindra University</strong><br>
+                        Spring 2026<br>
+                        <div class="course-role">Instructor</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">MA4401</div>
+                    <div class="course-name">Advanced Numerical Methods</div>
+                    <div class="course-details">
+                        <strong>Mahindra University</strong><br>
+                        Fall 2025<br>
+                        <div class="course-role">Instructor</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">MA6004</div>
+                    <div class="course-name">Scientific Computing</div>
+                    <div class="course-details">
+                        <strong>Mahindra University</strong><br>
+                        Fall 2022, Fall 2023, Fall 2024, Fall 2025<br>
+                        <div class="course-role">Instructor</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">MA2208</div>
+                    <div class="course-name"><a href="https://biswarupbiswas.github.io/MA2208">Numerical Methods</a></div>
+                    <div class="course-details">
+                        <strong>Mahindra University</strong><br>
+                        Spring 2022, 2023, 2024, 2025<br>
+                        <div class="course-role">Coordinator & Instructor</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">MA203</div>
+                    <div class="course-name">MATHS-III (Probability & Statistics)</div>
+                    <div class="course-details">
+                        <strong>Mahindra University</strong><br>
+                        Fall 2021, 2022, 2023, 2024, 2025<br>
+                        <div class="course-role">Tutorial Teacher</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">MA2107</div>
+                    <div class="course-name"><a href="https://biswarupbiswas.github.io/MA2107">Programming Workshop</a></div>
+                    <div class="course-details">
+                        <strong>Mahindra University</strong><br>
+                        Fall 2021, Fall 2022, Fall 2023, Fall 2024<br>
+                        <div class="course-role">Instructor</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">MTL712</div>
+                    <div class="course-name"><a href="http://maths.iitd.ac.in/drupal/courses/mtl712">Computational Methods for Differential Equations</a></div>
+                    <div class="course-details">
+                        <strong>IIT Delhi</strong><br>
+                        Fall 2019<br>
+                        <div class="course-role">Tutorial Teacher</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">MTP290</div>
+                    <div class="course-name"><a href="http://maths.iitd.ac.in/drupal/courses/mtl290">Computing Laboratory</a></div>
+                    <div class="course-details">
+                        <strong>IIT Delhi</strong><br>
+                        Spring 2020, 2021<br>
+                        <div class="course-role">Instructor</div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-code">MTL100</div>
+                    <div class="course-name"><a href="http://maths.iitd.ac.in/drupal/courses/mtl100">Calculus</a></div>
+                    <div class="course-details">
+                        <strong>IIT Delhi</strong><br>
+                        Fall 2020, Spring 2021<br>
+                        <div class="course-role">Tutorial Teacher</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="section" id="publications">
+        <div class="section-container">
+            <h2 class="section-title">Publications</h2>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-year">2023</div>
+                    <strong>Entropy stable discontinuous Galerkin schemes for two-fluid relativistic plasma flow equations</strong>
+                    <p>Bhoriya, D., Biswas, B., Kumar, H., & Chandrashekar, P.</p>
+                    <p><em>Journal of Scientific Computing</em>, 97, 72</p>
+                    <p><a href="https://doi.org/10.1007/s10915-023-02387-z">https://doi.org/10.1007/s10915-023-02387-z</a></p>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-year">2022</div>
+                    <strong>Entropy stable discontinuous Galerkin schemes for the special relativistic hydrodynamics equations</strong>
+                    <p>Biswas, B., Kumar, H., & Bhoriya, D.</p>
+                    <p><em>Computers and Mathematics with Applications</em></p>
+                    <p><a href="https://doi.org/10.1016/j.camwa.2022.02.019">https://doi.org/10.1016/j.camwa.2022.02.019</a></p>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-year">2021</div>
+                    <strong>Entropy stable discontinuous Galerkin methods for ten-moment Gaussian closure equations</strong>
+                    <p>Biswas, B., Kumar, H., & Yadav, A.</p>
+                    <p><em>Journal of Computational Physics</em></p>
+                    <p><a href="https://doi.org/10.1016/j.jcp.2021.110148">https://doi.org/10.1016/j.jcp.2021.110148</a></p>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-year">2020</div>
+                    <strong>ENO and WENO Schemes using Arc-length based Smoothness Measurement</strong>
+                    <p>Biswas, B., & Dubey, R. K.</p>
+                    <p><em>Computers and Mathematics with Applications, 80(12)</em></p>
+                    <p><a href="https://doi.org/10.1016/j.camwa.2020.10.005">https://doi.org/10.1016/j.camwa.2020.10.005</a></p>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-year">2020</div>
+                    <strong>Arc Length-Based WENO Scheme for Hamilton–Jacobi Equations</strong>
+                    <p>Samala, R., & Biswas, B.</p>
+                    <p><em>Communications on Applied Mathematics and Computation</em></p>
+                    <p><a href="https://doi.org/10.1007/s42967-020-00091-5">https://doi.org/10.1007/s42967-020-00091-5</a></p>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-year">2018</div>
+                    <strong>Suitable diffusion for constructing non-oscillatory entropy stable schemes</strong>
+                    <p>Dubey, R. K., & Biswas, B.</p>
+                    <p><em>Journal of Computational Physics, 372</em></p>
+                    <p><a href="https://doi.org/10.1016/j.jcp.2018.04.037">https://doi.org/10.1016/j.jcp.2018.04.037</a></p>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-year">2018</div>
+                    <strong>Low dissipative entropy stable schemes using third order WENO and TVD reconstructions</strong>
+                    <p>Biswas, B., & Dubey, R. K.</p>
+                    <p><em>Advances in Computational Mathematics, 44(4)</em></p>
+                    <p><a href="https://doi.org/10.1007/s10444-017-9576-2">https://doi.org/10.1007/s10444-017-9576-2</a></p>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-year">2017</div>
+                    <strong>An Analysis on Induced Numerical Oscillations by Lax-Friedrichs Scheme</strong>
+                    <p>Dubey, R. K., & Biswas, B.</p>
+                    <p><em>Differential Equations and Dynamical Systems, 25(2)</em></p>
+                    <p><a href="https://doi.org/10.1007/s12591-016-0311-0">https://doi.org/10.1007/s12591-016-0311-0</a></p>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-year">2016</div>
+                    <strong>Local maximum principle satisfying high-order non-oscillatory schemes</strong>
+                    <p>Dubey, R. K., Biswas, B., & Gupta, V.</p>
+                    <p><em>International Journal for Numerical Methods in Fluids, 81(11)</em></p>
+                    <p><a href="https://doi.org/10.1002/fld.4202">https://doi.org/10.1002/fld.4202</a></p>
+                </li>
+            </ul>
+            <p style="margin-top: 2rem; text-align: center;">
+                <a href="https://www.researchgate.net/profile/Biswarup_Biswas/publications" style="color: var(--accent); text-decoration: none; font-weight: 700;">See more publications on ResearchGate →</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="section-container">
+            <h2 class="section-title">Research Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Simulation of Relativistic Astrophysical Flow Problems</h3>
+                    <p>Development and implementation of modern efficient stable schemes for simulating relativistic astrophysical flows. This project focuses on creating provably stable numerical methods with applications to neutron star mergers, black hole accretion, and other extreme astrophysical phenomena.</p>
+                    <div class="project-meta">
+                        <div>
+                            <strong>Funding:</strong> SERB, Govt. of India<br>
+                            <strong>Total Cost:</strong> 19.6L (approx)<br>
+                            <strong>Status:</strong> Ongoing
+                        </div>
+                        <span class="funding-badge">SERB Funded</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section" id="education">
+        <div class="section-container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-timeline">
+                <div class="education-item">
+                    <div class="degree">Ph.D. in Mathematics</div>
+                    <h3>SRM Institute of Science and Technology</h3>
+                    <p><strong>September 2018</strong> • Kattankulathur, India</p>
+                    <p><strong>Thesis:</strong> Non Linearly Stable High Order Accurate Efficient Schemes for System of Hyperbolic Conservation Laws</p>
+                    <p><strong>Advisor:</strong> Prof. Ritesh Kumar Dubey</p>
+                </div>
+
+                <div class="education-item">
+                    <div class="degree">M. Sc. in Mathematics</div>
+                    <h3>IIT Madras</h3>
+                    <p><strong>July 2013</strong> • Chennai, India</p>
+                    <p><strong>CGPA:</strong> 8.41 / 10</p>
+                </div>
+
+                <div class="education-item">
+                    <div class="degree">B. Sc. in Mathematics</div>
+                    <h3>University of Kalyani</h3>
+                    <p><strong>May 2010</strong> • West Bengal, India</p>
+                    <p><strong>Percentage:</strong> 79.37%</p>
+                </div>
+            </div>
+
+            <div class="honors-section">
+                <h3>Scholastic Achievements</h3>
+                <ul>
+                    <li>Institute Postdoctoral Fellowship (IPDF) from IIT Delhi, India</li>
+                    <li>Awarded National Postdoctoral Fellowship (N-PDF) by SERB, Govt. of India</li>
+                    <li>Awarded CSIR Senior Research Fellowship (SRF) for PhD</li>
+                    <li>Passed National examination CSIR-UGC NET for Lectureship</li>
+                    <li>Secured All India Rank 121 in IIT JAM examination for Post Graduation study in IIT's</li>
+                    <li>IIT Madras Merit Cum scholarship</li>
+                    <li>Best paper presentation in international conference NDETMC-2017</li>
+                    <li>Awarded Gold Medal in Research Day (2014) at SRM University</li>
+                    <li>West Bengal merit cum means scholarship for Post Graduation study</li>
+                </ul>
+            </div>
+
+            <div class="honors-section" style="margin-top: 2rem;">
+                <h3>Workshop & Training Programs</h3>
+                <ul>
+                    <li>Selected for contributed paper in Conference on Computational PDE 2015 at TIFR CAM, Bengaluru</li>
+                    <li>International IFCAM Workshop on Control and Numerics for Fluid-Structure Interaction Problems (June 29 - July 1, 2015) - TIFR CAM, Bengaluru</li>
+                    <li>Advanced Summer School on Control and Numerics for Fluid-Structure Interaction Problems (22-26 June, 2015) - TIFR CAM, Bengaluru</li>
+                    <li>Advanced Level Workshop "Computational Methods for Control on Problems" (March 16-21, 2015) - IIST, Trivandrum & Mar Ivanios College, Trivandrum</li>
+                    <li>Attended NPDE~TCA postgraduate level training program on differential equations in IIT Madras, 2013</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seminars Section -->
+    <section class="section" id="seminars">
+        <div class="section-container">
+            <h2 class="section-title">Seminars & Talks</h2>
+            <div class="pub-list">
+                <div class="pub-item">
+                    <strong>Entropy stable discontinuous Galerkin methods for ten-moment Gaussian closure equations</strong>
+                    <p><strong>Type:</strong> PDF Applicant Talk</p>
+                    <p><strong>Venue:</strong> TIFR CAM, Bangalore</p>
+                    <p><a href="https://www.math.tifrbng.res.in/events/tba-blocked-for-pdf-talk-2">View Details</a></p>
+                </div>
+
+                <div class="pub-item">
+                    <strong>Introduction to machine learning with some applications</strong>
+                    <p><strong>Type:</strong> Invited Talk</p>
+                    <p><strong>Organizer:</strong> Government Polytechnic Kishanganj (Department of Science and Technology), Government of Bihar</p>
+                </div>
+
+                <div class="pub-item">
+                    <strong>Development of Entropy Stable TVD and TVB schemes for hyperbolic conservation laws</strong>
+                    <p><strong>Type:</strong> PDF Applicant Talk</p>
+                    <p><strong>Venue:</strong> Department of Mathematics, IIT Delhi</p>
+                    <p><a href="http://maths.iitd.ac.in/drupal/node/156">View Details</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="section-container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>Email</h3>
+                    <p><strong>Personal:</strong></p>
+                    <p><a href="/cdn-cgi/l/email-protection#6e0c071d190f1c1b1e0c592e09030f0702400d0103"><span class="__cf_email__" data-cfemail="5a3833292d3b282f2a386d1a3d373b333674393537">[email&#160;protected]</span></a></p>
+                    <p style="margin-top: 1rem;"><strong>Official:</strong></p>
+                    <p><a href="/cdn-cgi/l/email-protection#b1d3d8c2c6d0c3c4c19fd3d8c2c6d0c2f1dcd0d9d8dfd5c3d0c4dfd8c7d4c3c2d8c5c89fd4d5c49fd8df"><span class="__cf_email__" data-cfemail="fa9893898d9b888f8ad49893898d9b89ba979b9293949e889b8f94938c9f8889938e83d49f9e8fd49394">[email&#160;protected]</span></a></p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Address</h3>
+                    <p><strong>Department of Mathematics</strong></p>
+                    <p>Mahindra University<br>
+                    Hyderabad - 500043<br>
+                    Telangana, India</p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Useful Links</h3>
+                    <p><a href="https://www.researchgate.net/profile/Biswarup_Biswas">ResearchGate Profile</a></p>
+                    <p><a href="https://www.mahindrauniversity.edu.in/">Mahindra University</a></p>
+                    <p><a href="https://math.stackexchange.com/">Mathematics Stack Exchange</a></p>
+                    <p><a href="https://hartwork.org/beamer-theme-matrix/">Beamer Theme Matrix</a></p>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="assets/files/CV_of_Biswarup_Biswas.pdf" class="cv-btn">Download CV</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© Copyright 2025 Biswarup Biswas - All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Theme toggle - Simple and reliable
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Initialize theme on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
+                themeToggle.textContent = '☀️';
+            } else {
+                body.classList.remove('dark-theme');
+                themeToggle.textContent = '🌙';
+            }
+        });
+
+        // Toggle theme on button click
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const isDark = body.classList.toggle('dark-theme');
+                themeToggle.textContent = isDark ? '☀️' : '🌙';
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+        }
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navMenu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+
+        if (navLinks) {
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav') && navLinks) {
+                navLinks.classList.remove('active');
+                if (hamburger) hamburger.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href !== '#home') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
