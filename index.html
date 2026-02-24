@@ -3,1524 +3,1061 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biswarup Biswas - Assistant Professor, Department of Mathematics</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Biswarup Biswas — Assistant Professor, Department of Mathematics</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            /* Dark theme */
-            --dark-bg: #0a0e27;
-            --dark-card-bg: #1a1f3a;
-            --dark-text-light: #e0e0e0;
-            --dark-text-muted: #a0a0a0;
-            --dark-border: #2a2f4a;
-            
-            /* Light theme */
-            --light-bg: #f5f5f5;
-            --light-card-bg: #ffffff;
-            --light-text-light: #1a1a1a;
-            --light-text-muted: #555555;
-            --light-border: #e0e0e0;
-            
-            /* Accent (same for both) */
-            --accent: #ff6b6b;
-            --accent-light: #ffa8a8;
+            --ink: #1c1a16;
+            --ink-light: #3a3630;
+            --ink-muted: #6b6459;
+            --parchment: #faf7f2;
+            --parchment-warm: #f5f0e8;
+            --parchment-deep: #ede8de;
+            --border: #d6cebc;
+            --border-light: #e8e2d6;
+            --accent: #8b2e1a;
+            --accent-warm: #a34828;
+            --accent-gold: #c8922a;
+            --accent-gold-light: #e8b84a;
+            --sidenote: #5a6e4a;
+            --link: #2a4a7a;
+            --link-hover: #8b2e1a;
+            --card: #fffdf9;
+            --card-hover: #fdf8f0;
+            --shadow: rgba(30, 20, 10, 0.08);
+            --shadow-deep: rgba(30, 20, 10, 0.15);
         }
 
-        /* Light theme (default) */
+        body.dark {
+            --ink: #e8e2d4;
+            --ink-light: #c8c0b0;
+            --ink-muted: #8a8070;
+            --parchment: #171410;
+            --parchment-warm: #1e1a15;
+            --parchment-deep: #252018;
+            --border: #3a3228;
+            --border-light: #302a22;
+            --accent: #d4775a;
+            --accent-warm: #c4633e;
+            --accent-gold: #d4a44a;
+            --accent-gold-light: #e8c07a;
+            --sidenote: #7a9a5a;
+            --link: #6a9ad4;
+            --link-hover: #d4775a;
+            --card: #1e1a15;
+            --card-hover: #252018;
+            --shadow: rgba(0, 0, 0, 0.25);
+            --shadow-deep: rgba(0, 0, 0, 0.4);
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            --bg: var(--light-bg);
-            --card-bg: var(--light-card-bg);
-            --text-light: var(--light-text-light);
-            --text-muted: var(--light-text-muted);
-            --border-color: var(--light-border);
-        }
-
-        /* Dark theme */
-        body.dark-theme {
-            --bg: var(--dark-bg);
-            --card-bg: var(--dark-card-bg);
-            --text-light: var(--dark-text-light);
-            --text-muted: var(--dark-text-muted);
-            --border-color: var(--dark-border);
-        }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            background: var(--bg);
-            color: var(--text-light);
-            line-height: 1.6;
+            font-family: 'EB Garamond', 'Georgia', serif;
+            font-size: 20px; /* was 18px */
+            line-height: 1.75;
+            background: var(--parchment);
+            color: var(--ink);
+            transition: background 0.4s, color 0.4s;
             overflow-x: hidden;
-            transition: background 0.3s ease, color 0.3s ease;
         }
 
-        /* Blur to Clear Animation */
-        @keyframes blurToClean {
-            0% {
-                filter: blur(10px);
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                filter: blur(0);
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .section {
-            animation: blurToClean 0.8s ease-out;
-        }
-
-        /* Navigation */
-        nav {
+        /* ─── Texture overlay ─── */
+        body::before {
+            content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(245, 245, 245, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        /* ─── Navigation ─── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(250, 247, 242, 0.96);
+            border-bottom: 1px solid var(--border);
             z-index: 1000;
-            padding: 1rem 2rem;
-            transition: background 0.3s ease;
+            backdrop-filter: blur(12px);
+            transition: background 0.4s, border-color 0.4s;
         }
+        body.dark nav { background: rgba(23, 20, 16, 0.96); }
 
-        body.dark-theme nav {
-            background: rgba(10, 14, 39, 0.95);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .nav-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.7rem 2rem;
         }
 
         .nav-brand {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.65rem; /* was 1.5rem */
+            font-weight: 600;
+            color: var(--accent); text-decoration: none;
+            letter-spacing: 0.02em;
         }
+        .nav-brand span { font-style: italic; font-weight: 400; color: var(--ink-muted); font-size: 0.95rem; /* was 0.85rem */ margin-left: 0.5rem; }
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
+        .nav-links {
+            display: flex; gap: 1.8rem; list-style: none; align-items: center;
         }
-
-        .nav-menu {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--text-light);
-            font-weight: 500;
-            transition: color 0.3s;
+        .nav-links a {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.05rem; /* was 0.95rem */ font-weight: 400; letter-spacing: 0.03em;
+            color: var(--ink-light); text-decoration: none;
+            transition: color 0.25s;
             position: relative;
         }
-
-        .nav-menu a:hover {
-            color: var(--accent);
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -2px; left: 0;
+            width: 0; height: 1px; background: var(--accent);
             transition: width 0.3s;
         }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after { width: 100%; }
 
-        .nav-menu a:hover::after {
-            width: 100%;
+        .theme-btn {
+            background: none; border: 1px solid var(--border);
+            border-radius: 4px; padding: 0.25rem 0.6rem;
+            color: var(--ink-muted); cursor: pointer;
+            font-size: 1rem; /* was 0.9rem */ transition: all 0.3s;
+            font-family: 'JetBrains Mono', monospace;
         }
+        .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-        /* Theme Toggle */
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 1.3rem;
-            cursor: pointer;
-            transition: color 0.3s, transform 0.3s;
-            padding: 0.5rem;
-        }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.4rem; }
+        .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--ink); margin: 5px 0; transition: all 0.3s; }
 
-        .theme-toggle:hover {
-            color: var(--accent);
-            transform: rotate(20deg);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background: var(--accent);
-            transition: all 0.3s;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(10px, 10px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* Mobile Menu */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: absolute;
-                top: 70px;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                background: var(--card-bg);
-                gap: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
-                border-bottom: 1px solid var(--border-color);
-            }
-
-            .nav-menu.active {
-                max-height: 500px;
-            }
-
-            .nav-menu li {
-                border-bottom: 1px solid var(--border-color);
-            }
-
-            .nav-menu a {
-                display: block;
-                padding: 1rem 2rem;
-            }
-
-            .nav-menu a::after {
-                display: none;
-            }
-
-            .nav-right {
-                gap: 1rem;
-            }
-        }
-
-        /* Hero Section */
+        /* ─── Hero ─── */
         .hero {
-            margin-top: 80px;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(10, 14, 39, 0) 100%);
-            border-bottom: 1px solid var(--border-color);
-            transition: background 0.3s ease;
-        }
-
-        body.dark-theme .hero {
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.08) 0%, rgba(245, 245, 245, 0) 100%);
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-        }
-
-        .hero-content .subtitle {
-            font-size: 1.3rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .hero-content p {
-            font-size: 1rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .hero-content .tagline {
-            margin-top: 1.8rem;
-            padding-left: 1rem;
-            border-left: 3px solid var(--accent);
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: var(--text-light);
-        }
-
-        .hero-image img {
-            width: 100%;
-            max-width: 350px;
-            border-radius: 10px;
-            border: 2px solid var(--accent);
-            transition: transform 0.3s;
-        }
-
-        .hero-image img:hover {
-            transform: scale(1.02);
-        }
-
-        /* Sections */
-        .section {
-            padding: 4rem 2rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .section-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 2rem;
+            margin-top: 60px;
+            padding: 5rem 2rem 4rem;
+            background: linear-gradient(160deg, var(--parchment-warm) 0%, var(--parchment) 60%);
+            border-bottom: 1px solid var(--border);
             position: relative;
-            padding-bottom: 1rem;
+            overflow: hidden;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
+        .hero::after {
+            content: '∫∮∇∂';
+            position: absolute; right: 3rem; top: 2rem;
+            font-size: 8rem; opacity: 0.04;
+            font-family: 'EB Garamond', serif;
+            color: var(--accent); pointer-events: none;
+            line-height: 1; letter-spacing: -0.02em;
         }
 
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+        .hero-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr auto;
+            gap: 4rem; align-items: start;
         }
 
-        .about-text {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            line-height: 1.9;
+        .hero-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.2rem; /* was 3.8rem */ font-weight: 600; line-height: 1.1;
+            color: var(--ink); letter-spacing: -0.01em;
+            margin-bottom: 0.4rem;
+        }
+        .hero-role {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem; /* was 1.15rem */ font-weight: 400;
+            color: var(--accent); letter-spacing: 0.04em;
+            text-transform: uppercase; margin-bottom: 0.3rem;
+        }
+        .hero-affil {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem; /* was 1rem */ color: var(--ink-muted);
+            margin-bottom: 2rem; font-style: italic;
         }
 
-        .about-text p {
-            margin-bottom: 1.5rem;
+        .hero-divider {
+            width: 60px; height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-gold));
+            margin: 1.5rem 0;
         }
 
-        .about-text a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.3s;
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem; /* was 1.25rem */ font-style: italic; font-weight: 400;
+            color: var(--ink-muted);
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 1.2rem;
+            line-height: 1.6;
+            max-width: 520px;
         }
 
-        .about-text a:hover {
-            color: var(--accent-light);
+        .hero-contact-quick {
+            margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;
+        }
+        .hero-btn {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1rem; /* was 0.9rem */ padding: 0.55rem 1.5rem; /* slightly more padding */
+            border: 1px solid var(--border); border-radius: 3px;
+            color: var(--ink-light); text-decoration: none;
+            background: var(--card); transition: all 0.3s;
+            letter-spacing: 0.03em;
+        }
+        .hero-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--card-hover); }
+        .hero-btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .hero-btn.primary:hover { background: var(--accent-warm); border-color: var(--accent-warm); }
+
+        .hero-portrait {
+            flex-shrink: 0;
+        }
+        .hero-portrait img {
+            width: 200px; height: 250px; object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            box-shadow: 6px 6px 0 var(--parchment-deep), 7px 7px 0 var(--border);
+            display: block;
         }
 
-        .interests-box {
-            background: var(--card-bg);
+        /* ─── Sections ─── */
+        section {
+            padding: 4.5rem 2rem;
+            border-bottom: 1px solid var(--border-light);
+            animation: fadeIn 0.6s ease both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+
+        .section-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem; /* was 2.2rem */ font-weight: 600;
+            color: var(--ink); margin-bottom: 0.3rem;
+            letter-spacing: -0.01em;
+            display: flex; align-items: baseline; gap: 1rem;
+        }
+        .section-heading::after {
+            content: ''; flex: 1; height: 1px;
+            background: linear-gradient(90deg, var(--border), transparent);
+            margin-bottom: 0.2rem;
+        }
+        .section-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem; /* was 0.75rem */ color: var(--accent-gold);
+            letter-spacing: 0.05em;
+        }
+        .section-sub {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.05rem; /* was 0.95rem */ color: var(--ink-muted);
+            font-style: italic; margin-bottom: 2.5rem;
+        }
+
+        /* ─── About ─── */
+        .about-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; align-items: start; }
+
+        .prose {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.15rem; /* was 1.05rem */ line-height: 1.85;
+            color: var(--ink); text-align: justify;
+            hyphens: auto;
+        }
+        .prose p { margin-bottom: 1.2rem; }
+        .prose p:first-child::first-letter {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2em; font-weight: 600; line-height: 0.85;
+            float: left; margin-right: 0.08em; margin-top: 0.06em;
+            color: var(--accent); padding-right: 2px;
+        }
+        .prose a { color: var(--link); text-decoration: none; border-bottom: 1px solid var(--border); transition: color 0.2s, border-color 0.2s; }
+        .prose a:hover { color: var(--link-hover); border-color: var(--link-hover); }
+        .prose strong { color: var(--accent); font-weight: 600; }
+
+        .focus-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
             padding: 2rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--accent);
-            transition: background 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 3px 3px 0 var(--parchment-deep), 4px 4px 0 var(--border);
+        }
+        .focus-box h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; /* was 1.15rem */ font-weight: 600; margin-bottom: 1.2rem;
+            color: var(--accent); letter-spacing: 0.02em;
+            padding-bottom: 0.6rem; border-bottom: 1px solid var(--border);
         }
 
-        .interests-box:hover {
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.1);
-        }
-
-        .interests-box h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-
+        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
         .tag {
-            background: rgba(255, 107, 107, 0.2);
-            border: 1px solid var(--accent);
-            color: var(--accent-light);
-            padding: 0.6rem 1.2rem;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            transition: all 0.3s;
+            font-family: 'Crimson Pro', serif;
+            font-size: 0.97rem; /* was 0.88rem */ padding: 0.3rem 0.85rem;
+            border: 1px solid var(--border); border-radius: 2px;
+            color: var(--ink-muted); background: var(--parchment-warm);
+            transition: all 0.25s; letter-spacing: 0.02em;
+            cursor: default;
         }
+        .tag:hover { border-color: var(--accent); color: var(--accent); background: var(--card-hover); }
 
-        .tag:hover {
-            background: var(--accent);
-            color: var(--dark-bg);
+        /* ─── Experience ─── */
+        .exp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .exp-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 4px; padding: 1.6rem;
+            transition: all 0.3s; position: relative;
+            overflow: hidden;
         }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
+        .exp-card::before {
+            content: ''; position: absolute;
+            left: 0; top: 0; bottom: 0; width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-gold));
         }
-
-        .project-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--accent);
-            transition: all 0.3s;
+        .exp-card:hover { box-shadow: 4px 4px 16px var(--shadow); transform: translateY(-2px); }
+        .exp-pos {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem; /* was 1.1rem */ font-weight: 600; color: var(--ink);
+            margin-bottom: 0.3rem;
         }
-
-        .project-card:hover {
-            transform: translateX(10px);
-            background: rgba(26, 31, 58, 0.8);
+        .exp-org { font-family: 'Crimson Pro', serif; font-size: 1.05rem; /* was 0.95rem */ color: var(--accent); margin-bottom: 0.2rem; }
+        .exp-dur {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.87rem; /* was 0.78rem */ color: var(--ink-muted); letter-spacing: 0.03em;
         }
+        .exp-sponsor { font-family: 'EB Garamond', serif; font-size: 0.97rem; /* was 0.88rem */ color: var(--sidenote); font-style: italic; margin-top: 0.4rem; }
 
-        body.dark-theme .project-card:hover {
-            background: rgba(255, 107, 107, 0.05);
-        }
-
-        .project-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .project-card p {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .project-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .project-meta strong {
-            color: var(--text-light);
-        }
-
-        .funding-badge {
-            background: rgba(255, 107, 107, 0.2);
-            color: var(--accent);
-            padding: 0.4rem 1rem;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* Publications */
-        .pub-list {
-            list-style: none;
-        }
-
-        .pub-item {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--accent);
-            transition: all 0.3s;
-        }
-
-        .pub-item:hover {
-            transform: translateX(5px);
-            background: rgba(26, 31, 58, 0.8);
-        }
-
-        body.dark-theme .pub-item:hover {
-            background: rgba(255, 107, 107, 0.05);
-        }
-
-        .pub-year {
-            display: inline-block;
-            background: rgba(255, 107, 107, 0.2);
-            color: var(--accent);
-            padding: 0.3rem 0.8rem;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-        }
-
-        .pub-item strong {
-            color: var(--accent-light);
-            font-size: 0.95rem;
-        }
-
-        .pub-item p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin: 0.5rem 0;
-        }
-
-        .pub-item a {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .pub-item a:hover {
-            text-decoration: underline;
-        }
-
-        /* PhD Scholars Section */
-        .scholars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .scholar-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--accent);
-            transition: all 0.3s ease;
-        }
-
-        .scholar-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.2);
-        }
-
-        .scholar-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .scholar-info {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        .scholar-info p {
-            margin-bottom: 0.8rem;
-        }
-
-        .scholar-info a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .scholar-info a:hover {
-            text-decoration: underline;
-        }
-
-        /* Work Experience Section */
-        .experience-timeline {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .experience-item {
-            padding: 1.5rem;
-            background: var(--card-bg);
-            border-radius: 10px;
-            border-left: 4px solid var(--accent);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .experience-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.2);
-        }
-
-        .experience-item::before {
-            display: none;
-        }
-
-        .experience-item:last-child {
-            padding-bottom: 1.5rem;
-            border-left: 4px solid var(--accent);
-        }
-
-        .experience-item .position {
-            font-weight: 600;
-            color: var(--text-light);
-            font-size: 1rem;
-        }
-
-        .experience-item .organization {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-top: 0.5rem;
-        }
-
-        .experience-item .duration {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 0.3rem;
-        }
-
-        .experience-item .sponsor {
-            color: var(--accent);
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            font-style: italic;
-        }
-
-        /* Teaching Section */
-        .teaching-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
+        /* ─── Teaching ─── */
+        .teaching-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
         .course-card {
-            background: var(--card-bg);
-            padding: 1.8rem;
-            border-radius: 10px;
-            border-top: 3px solid var(--accent);
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 4px; padding: 1.5rem;
+            transition: all 0.3s; position: relative;
+            overflow: hidden;
+        }
+        .course-card::after {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-gold));
+        }
+        .course-card:hover { box-shadow: 3px 3px 12px var(--shadow); transform: translateY(-2px); }
+        .course-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.83rem; /* was 0.75rem */ color: var(--accent-gold);
+            letter-spacing: 0.06em; margin-bottom: 0.4rem;
+        }
+        .course-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem; /* was 1.05rem */ font-weight: 600; color: var(--ink);
+            line-height: 1.35; margin-bottom: 0.6rem;
+        }
+        .course-name a { color: var(--ink); text-decoration: none; transition: color 0.2s; }
+        .course-name a:hover { color: var(--accent); }
+        .course-meta { font-family: 'Crimson Pro', serif; font-size: 0.97rem; /* was 0.88rem */ color: var(--ink-muted); line-height: 1.6; }
+        .course-role { color: var(--sidenote); font-style: italic; margin-top: 0.3rem; font-size: 0.93rem; /* was 0.85rem */ }
+
+        /* ─── Scholars ─── */
+        .scholars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .scholar-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 4px; padding: 2rem;
             transition: all 0.3s;
         }
+        .scholar-card:hover { box-shadow: 4px 4px 16px var(--shadow); }
+        .scholar-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.45rem; /* was 1.3rem */ font-weight: 600;
+            color: var(--accent); margin-bottom: 0.8rem;
+            padding-bottom: 0.6rem; border-bottom: 1px solid var(--border);
+        }
+        .scholar-info { font-family: 'EB Garamond', serif; font-size: 1.05rem; /* was 0.95rem */ color: var(--ink-light); line-height: 1.8; }
+        .scholar-info strong { color: var(--ink); font-weight: 600; }
+        .scholar-info a { color: var(--link); }
 
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.1);
+        /* ─── Publications ─── */
+        .pub-list { list-style: none; }
+        .pub-item {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-light);
+            display: grid; grid-template-columns: 60px 1fr;
+            gap: 1.5rem; align-items: start;
+            transition: background 0.25s;
+        }
+        .pub-item:last-child { border-bottom: none; }
+        .pub-item:hover { background: var(--card-hover); }
+        .pub-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem; /* was 0.85rem */ color: var(--accent-gold);
+            letter-spacing: 0.04em; text-align: center;
+            padding-top: 0.15rem;
+            border-right: 1px solid var(--border);
+            padding-right: 1.5rem;
+            font-weight: 500;
+        }
+        .pub-content {}
+        .pub-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem; /* was 1.1rem */ font-weight: 600; color: var(--ink);
+            line-height: 1.4; margin-bottom: 0.4rem;
+        }
+        .pub-authors { font-family: 'Crimson Pro', serif; font-size: 1.05rem; /* was 0.95rem */ color: var(--ink-muted); margin-bottom: 0.25rem; font-style: italic; }
+        .pub-journal { font-family: 'Crimson Pro', serif; font-size: 1.05rem; /* was 0.95rem */ color: var(--sidenote); }
+        .pub-doi { display: inline-block; margin-top: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.87rem; /* was 0.78rem */ color: var(--link); text-decoration: none; transition: color 0.2s; }
+        .pub-doi:hover { color: var(--link-hover); }
+
+        /* ─── Projects ─── */
+        .project-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 4px; padding: 2.5rem;
+            display: grid; grid-template-columns: 1fr auto;
+            gap: 2rem; align-items: start;
+            box-shadow: 3px 3px 0 var(--parchment-deep), 4px 4px 0 var(--border);
+            transition: all 0.3s;
+        }
+        .project-card:hover { box-shadow: 6px 6px 0 var(--parchment-deep), 7px 7px 0 var(--border); transform: translate(-2px, -2px); }
+        .project-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.55rem; /* was 1.4rem */ font-weight: 600; color: var(--ink);
+            margin-bottom: 0.8rem; line-height: 1.35;
+        }
+        .project-desc { font-family: 'EB Garamond', serif; font-size: 1.1rem; /* was 1rem */ color: var(--ink-light); line-height: 1.8; text-align: justify; }
+        .project-meta { font-family: 'Crimson Pro', serif; font-size: 1.02rem; /* was 0.92rem */ color: var(--ink-muted); margin-top: 1rem; }
+        .project-meta strong { color: var(--ink); }
+        .funding-badge {
+            background: var(--accent); color: #fff;
+            font-family: 'Crimson Pro', serif;
+            font-size: 0.95rem; /* was 0.85rem */ padding: 0.4rem 1rem;
+            border-radius: 2px; white-space: nowrap;
+            letter-spacing: 0.03em;
+        }
+        .status-badge {
+            display: inline-block;
+            background: var(--sidenote); color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem; /* was 0.72rem */ padding: 0.25rem 0.7rem;
+            border-radius: 2px; margin-top: 0.5rem;
+            letter-spacing: 0.04em;
         }
 
-        .course-code {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-        }
-
-        .course-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.15rem;
-            color: var(--text-light);
-            margin: 0.8rem 0;
-            font-weight: 600;
-        }
-
-        .course-name a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .course-name a:hover {
-            color: var(--accent);
-        }
-
-        .course-name a::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .course-name a:hover::after {
-            width: 100%;
-        }
-
-        .course-details {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.7;
-        }
-
-        .course-role {
-            color: var(--accent);
-            font-weight: 600;
-            margin-top: 0.8rem;
-        }
-
-        /* Education Section */
-        .education-timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .education-timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
+        /* ─── Education ─── */
+        .edu-timeline { position: relative; padding-left: 2.5rem; }
+        .edu-timeline::before {
+            content: ''; position: absolute;
+            left: 6px; top: 8px; bottom: 8px; width: 1px;
             background: linear-gradient(to bottom, var(--accent), transparent);
         }
-
-        .education-item {
-            margin-bottom: 3rem;
-            position: relative;
-            padding-left: 2rem;
+        .edu-item { margin-bottom: 3rem; position: relative; }
+        .edu-item::before {
+            content: ''; position: absolute;
+            left: -2.5rem; top: 8px;
+            width: 13px; height: 13px;
+            border: 2px solid var(--accent); border-radius: 50%;
+            background: var(--parchment);
         }
-
-        .education-item::before {
-            content: '';
-            position: absolute;
-            left: -9px;
-            top: 5px;
-            width: 18px;
-            height: 18px;
-            background: var(--bg);
-            border: 3px solid var(--accent);
-            border-radius: 50%;
+        .edu-degree {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.87rem; /* was 0.78rem */ color: var(--accent-gold);
+            letter-spacing: 0.06em; text-transform: uppercase;
+            margin-bottom: 0.3rem;
         }
-
-        .education-item .degree {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
+        .edu-inst {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem; /* was 1.2rem */ font-weight: 600; color: var(--ink);
+            margin-bottom: 0.3rem;
         }
+        .edu-details { font-family: 'EB Garamond', serif; font-size: 1.05rem; /* was 0.95rem */ color: var(--ink-muted); line-height: 1.7; }
+        .edu-details strong { color: var(--ink-light); font-weight: 600; }
 
-        .education-item h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin: 0.5rem 0;
+        /* ─── Honors ─── */
+        .honors-box {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 4px; padding: 2rem; margin-top: 3rem;
         }
-
-        .education-item p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin: 0.4rem 0;
+        .honors-box h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.45rem; /* was 1.3rem */ font-weight: 600; color: var(--accent);
+            margin-bottom: 1.2rem; padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border);
         }
-
-        /* Honors */
-        .honors-section {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--accent);
-            margin-top: 3rem;
-            transition: background 0.3s ease;
+        .honors-list { list-style: none; }
+        .honors-list li {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.07rem; /* was 0.97rem */ color: var(--ink-light);
+            padding: 0.6rem 0; border-bottom: 1px solid var(--border-light);
+            display: flex; gap: 0.8rem; align-items: baseline;
+            line-height: 1.6;
         }
+        .honors-list li:last-child { border-bottom: none; }
+        .honors-list li::before { content: '✦'; color: var(--accent-gold); font-size: 0.7rem; flex-shrink: 0; margin-top: 0.2rem; }
 
-        .honors-section h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--accent);
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
+        /* ─── Seminars ─── */
+        .seminar-item {
+            padding: 1.8rem;
+            border-bottom: 1px solid var(--border-light);
+            transition: background 0.25s;
         }
-
-        .honors-section ul {
-            list-style: none;
+        .seminar-item:last-child { border-bottom: none; }
+        .seminar-item:hover { background: var(--card-hover); }
+        .seminar-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem; /* was 1.1rem */ font-weight: 600; color: var(--ink);
+            margin-bottom: 0.5rem; line-height: 1.4;
         }
-
-        .honors-section li {
-            color: var(--text-light);
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.9rem;
-        }
-
-        .honors-section li::before {
-            content: '✓ ';
-            color: var(--accent);
-            font-weight: bold;
-            margin-right: 0.8rem;
-        }
-
-        .honors-section li:last-child {
-            border-bottom: none;
-        }
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            border-top: 3px solid var(--accent);
-            transition: all 0.3s;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-3px);
-        }
-
-        .contact-card h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-card p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.7;
-        }
-
-        .contact-card a {
-            color: var(--accent);
-            text-decoration: none;
-            word-break: break-word;
-        }
-
-        .contact-card a:hover {
-            color: var(--accent-light);
-        }
-
-        .contact-card strong {
-            color: var(--text-light);
-        }
-
-        .cv-btn {
+        .seminar-meta { font-family: 'Crimson Pro', serif; font-size: 1.03rem; /* was 0.93rem */ color: var(--ink-muted); line-height: 1.7; }
+        .seminar-meta strong { color: var(--ink-light); }
+        .seminar-type {
             display: inline-block;
-            background: var(--accent);
-            color: var(--dark-bg);
-            padding: 1rem 2.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            margin-top: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem; /* was 0.72rem */ color: var(--sidenote);
+            border: 1px solid var(--sidenote); border-radius: 2px;
+            padding: 0.15rem 0.5rem; letter-spacing: 0.04em;
+            margin-bottom: 0.4rem;
         }
+        .seminar-meta a { color: var(--link); text-decoration: none; font-size: 0.97rem; /* was 0.88rem */ }
+        .seminar-meta a:hover { color: var(--link-hover); }
 
-        .cv-btn:hover {
-            background: var(--accent-light);
-            transform: scale(1.05);
+        /* ─── Contact ─── */
+        .contact-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .contact-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 4px; padding: 2rem;
+            transition: box-shadow 0.3s;
         }
+        .contact-card:hover { box-shadow: 3px 3px 12px var(--shadow); }
+        .contact-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem; /* was 1.1rem */ font-weight: 600; color: var(--accent);
+            margin-bottom: 1rem; padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .contact-card p {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.07rem; /* was 0.97rem */ color: var(--ink-light);
+            line-height: 1.8; margin-bottom: 0.3rem;
+        }
+        .contact-card strong { color: var(--ink); font-weight: 600; }
+        .contact-card a { color: var(--link); text-decoration: none; transition: color 0.2s; }
+        .contact-card a:hover { color: var(--link-hover); }
 
-        /* Footer */
+        .cv-download {
+            text-align: center; margin-top: 3rem;
+        }
+        .cv-download a {
+            display: inline-block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem; /* was 1.1rem */ font-weight: 600;
+            background: var(--accent); color: #fff;
+            padding: 0.8rem 2.5rem; border-radius: 3px;
+            text-decoration: none; letter-spacing: 0.04em;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .cv-download a:hover { background: var(--accent-warm); transform: translateY(-2px); }
+        .cv-download small { display: block; margin-top: 0.7rem; font-family: 'EB Garamond', serif; font-size: 0.97rem; /* was 0.88rem */ color: var(--ink-muted); font-style: italic; }
+
+        /* ─── Footer ─── */
         footer {
-            background: var(--card-bg);
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
-            transition: background 0.3s ease;
+            background: var(--parchment-warm);
+            border-top: 1px solid var(--border);
+            padding: 2rem; text-align: center;
         }
+        footer p { font-family: 'Crimson Pro', serif; font-size: 1rem; /* was 0.9rem */ color: var(--ink-muted); }
+        footer em { color: var(--accent-gold); }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav {
-                padding: 1rem;
-            }
-
-            .nav-brand {
-                font-size: 1.4rem;
-            }
-
-            .hero {
-                margin-top: 70px;
-                padding: 2rem 1rem;
-            }
-
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero-image img {
-                max-width: 250px;
-                margin: 0 auto;
-            }
-
-            .section {
-                padding: 2.5rem 1rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .teaching-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .project-meta {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .section-container {
-                padding: 0;
-            }
+        /* ─── Responsive ─── */
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; }
+            .hero-portrait { display: none; }
+            .about-layout { grid-template-columns: 1fr; }
+            .exp-grid { grid-template-columns: 1fr; }
+            .teaching-grid { grid-template-columns: repeat(2, 1fr); }
+            .scholars-grid { grid-template-columns: 1fr; }
+            .contact-layout { grid-template-columns: 1fr; }
+            .project-card { grid-template-columns: 1fr; }
         }
-
-        @media (max-width: 480px) {
-            nav {
-                padding: 0.8rem;
+        @media (max-width: 640px) {
+            nav .nav-links { display: none; }
+            .hamburger { display: block; }
+            nav .nav-links.open {
+                display: flex; flex-direction: column; gap: 0;
+                position: absolute; top: 56px; left: 0; right: 0;
+                background: var(--parchment); border-bottom: 1px solid var(--border);
+                padding: 1rem 0;
             }
-
-            .nav-container {
-                padding: 0;
-            }
-
-            .nav-brand {
-                font-size: 1.2rem;
-            }
-
-            .hero-content h1 {
-                font-size: 1.8rem;
-            }
-
-            .hero-content .subtitle {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .course-name {
-                font-size: 1rem;
-            }
-
-            .education-item {
-                padding-left: 1.5rem;
-            }
-
-            .education-item::before {
-                left: -7px;
-            }
-
-            .interests-box {
-                padding: 1.5rem;
-            }
-
-            .pub-item {
-                padding: 1.2rem;
-            }
-
-            .contact-card {
-                padding: 1.5rem;
-            }
-
-            .cv-btn {
-                padding: 0.8rem 1.5rem;
-                font-size: 1rem;
-            }
-
-            .experience-timeline {
-                grid-template-columns: 1fr;
-            }
+            nav .nav-links.open a { padding: 0.6rem 2rem; display: block; }
+            .hero-name { font-size: 2.9rem; /* was 2.6rem */ }
+            body { font-size: 17px; /* was 16px */ }
+            .pub-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .pub-year { border-right: none; padding-right: 0; text-align: left; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+            .teaching-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="#home" class="nav-brand">BB</a>
-            <div class="nav-right">
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#teaching">Teaching</a></li>
-                    <li><a href="#scholars">Research Team</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#seminars">Seminars</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <button class="theme-toggle" id="themeToggle" title="Toggle dark/light theme">
-                    🌙
-                </button>
-            </div>
+
+<!-- Navigation -->
+<nav id="top-nav">
+    <div class="nav-inner">
+        <a href="#home" class="nav-brand">BB</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#teaching">Teaching</a></li>
+            <li><a href="#scholars">Team</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#seminars">Talks</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div style="display:flex;align-items:center;gap:0.8rem">
+            <button class="theme-btn" id="themeBtn" title="Toggle theme">◑</button>
             <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- Hero Section -->
-    <section class="hero section">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>Biswarup Biswas</h1>
-                <div class="subtitle">Assistant Professor</div>
-                <p>Department of Mathematics, Mahindra University, Hyderabad</p>
-                <!-- <p>Specializing in hyperbolic conservation laws, WENO schemes, and entropy-stable high-order methods. Focused on robust, structure-preserving numerical techniques for compressible and astrophysical flows.</p> -->
-                <div class="tagline">
-                    Numerical programmers don’t just code — they resolve theory with mathematics.
-                </div>
-
-            </div>
-            <div class="hero-image">
-                <img src="assets/images/biswarup-biswas-332x390.jpg" alt="Biswarup Biswas">
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section" id="about">
-        <div class="section-container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>I am currently an Assistant Professor at <a href="https://www.mahindrauniversity.edu.in/">Mahindra University</a>, Hyderabad, where I work on computational methods for balance laws.</p>
-                    <p>Before joining Mahindra University, I was a Post Doctoral Fellow at <a href="https://home.iitd.ac.in/">IIT Delhi</a>, where I worked with <a href="https://hkkaushik.github.io/">Prof. Harish Kumar</a> on the development of entropy stable methods.</p>
-                    <p>I earned my PhD from <a href="http://www.srmist.edu.in">SRM Institute of Science and Technology</a> under the supervision of <a href="https://www.srmist.edu.in/faculty/dr-ritesh-kumar-dubey/">Prof. Ritesh Kumar Dubey</a>. I completed my MSc from <a href="https://www.iitm.ac.in/">IIT Madras</a>.</p>
-                    <p><strong>Current Focus:</strong> I am working on stable schemes for various astrophysical problems including simulations of relativistic flows and developing efficient numerical methods with theoretical guarantees.</p>
-                </div>
-                <div class="interests-box">
-                    <h3>Research Interests</h3>
-                    <div class="tags">
-                        <span class="tag">Entropy Stable Schemes</span>
-                        <span class="tag">DG Schemes</span>
-                        <span class="tag">WENO Schemes</span>
-                        <span class="tag">Structure-Preserving Methods</span>
-                        <span class="tag">Hyperbolic Conservation Laws</span>
-                        <span class="tag">Deep Learning</span>
-                        <span class="tag">Hamilton-Jacobi Equations</span>
-                        <span class="tag">Astrophysical Flows</span>
-                    </div>
-                </div>
+<!-- Hero -->
+<section class="hero" id="home">
+    <div class="hero-inner">
+        <div>
+            <p class="hero-role">Assistant Professor of Mathematics</p>
+            <h1 class="hero-name">Biswarup<br>Biswas</h1>
+            <p class="hero-affil">Department of Mathematics, Mahindra University, Hyderabad</p>
+            <div class="hero-divider"></div>
+            <blockquote class="hero-tagline">
+                Numerical programmers don't just code — they resolve theory with mathematics.
+            </blockquote>
+            <div class="hero-contact-quick">
+                <a href="#about" class="hero-btn">Read More</a>
+                <a href="#publications" class="hero-btn">Publications</a>
+                <a href="assets/files/CV_of_Biswarup_Biswas.pdf" class="hero-btn primary">Download CV</a>
             </div>
         </div>
-    </section>
-
-    <!-- Work Experience Section -->
-    <section class="section" id="experience">
-        <div class="section-container">
-            <h2 class="section-title">Work Experience</h2>
-            <ul class="experience-timeline">
-                <li class="experience-item">
-                    <div class="position">Assistant Professor</div>
-                    <div class="organization">Mahindra University, Hyderabad</div>
-                    <div class="duration">2021 – Present</div>
-                </li>
-                <li class="experience-item">
-                    <div class="position">Post Doctoral Fellow</div>
-                    <div class="organization">IIT Delhi, New Delhi</div>
-                    <div class="duration">2019 – 2021</div>
-                </li>
-                <li class="experience-item">
-                    <div class="position">Senior Research Fellow (SRF)</div>
-                    <div class="organization">SRM University, Chennai</div>
-                    <div class="duration">2016 – 2018</div>
-                    <div class="sponsor">Sponsored by CSIR</div>
-                </li>
-                <li class="experience-item">
-                    <div class="position">Junior Research Fellow (JRF)</div>
-                    <div class="organization">SRM University, Chennai</div>
-                    <div class="duration">2013 – 2016</div>
-                    <div class="sponsor">Sponsored by SERB, DST</div>
-                </li>
-            </ul>
+        <div class="hero-portrait">
+            <img src="assets/images/biswarup-biswas-332x390.jpg" alt="Biswarup Biswas">
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Teaching Section -->
-    <section class="section" id="teaching">
-        <div class="section-container">
-            <h2 class="section-title">Teaching</h2>
-            <div class="teaching-grid">
-                <div class="course-card">
-                    <div class="course-code">MA2221</div>
-                    <div class="course-name"><a href="https://biswarupbiswas.github.io/MA2221">Foundational Mathematics for ML</a></div>
-                    <div class="course-details">
-                        <strong>Mahindra University</strong><br>
-                        Spring 2026<br>
-                        <div class="course-role">Instructor</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-code">MA4401</div>
-                    <div class="course-name">Advanced Numerical Methods</div>
-                    <div class="course-details">
-                        <strong>Mahindra University</strong><br>
-                        Fall 2025<br>
-                        <div class="course-role">Instructor</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-code">MA6004</div>
-                    <div class="course-name">Scientific Computing</div>
-                    <div class="course-details">
-                        <strong>Mahindra University</strong><br>
-                        Fall 2022, Fall 2023, Fall 2024, Fall 2025<br>
-                        <div class="course-role">Instructor</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-code">MA2208</div>
-                    <div class="course-name"><a href="https://biswarupbiswas.github.io/MA2208">Numerical Methods</a></div>
-                    <div class="course-details">
-                        <strong>Mahindra University</strong><br>
-                        Spring 2022, 2023, 2024, 2025<br>
-                        <div class="course-role">Coordinator & Instructor</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-code">MA203</div>
-                    <div class="course-name">MATHS-III (Probability & Statistics)</div>
-                    <div class="course-details">
-                        <strong>Mahindra University</strong><br>
-                        Fall 2021, 2022, 2023, 2024, 2025<br>
-                        <div class="course-role">Tutorial Teacher</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-code">MA2107</div>
-                    <div class="course-name"><a href="https://biswarupbiswas.github.io/MA2107">Programming Workshop</a></div>
-                    <div class="course-details">
-                        <strong>Mahindra University</strong><br>
-                        Fall 2021, Fall 2022, Fall 2023, Fall 2024<br>
-                        <div class="course-role">Instructor</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-code">MTL712</div>
-                    <div class="course-name"><a href="http://maths.iitd.ac.in/drupal/courses/mtl712">Computational Methods for Differential Equations</a></div>
-                    <div class="course-details">
-                        <strong>IIT Delhi</strong><br>
-                        Fall 2019<br>
-                        <div class="course-role">Tutorial Teacher</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-code">MTP290</div>
-                    <div class="course-name"><a href="http://maths.iitd.ac.in/drupal/courses/mtl290">Computing Laboratory</a></div>
-                    <div class="course-details">
-                        <strong>IIT Delhi</strong><br>
-                        Spring 2020, 2021<br>
-                        <div class="course-role">Instructor</div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="course-code">MTL100</div>
-                    <div class="course-name"><a href="http://maths.iitd.ac.in/drupal/courses/mtl100">Calculus</a></div>
-                    <div class="course-details">
-                        <strong>IIT Delhi</strong><br>
-                        Fall 2020, Spring 2021<br>
-                        <div class="course-role">Tutorial Teacher</div>
-                    </div>
+<!-- About -->
+<section id="about">
+    <div class="section-inner">
+        <div class="section-heading"><span class="section-num">§1</span> About Me</div>
+        <p class="section-sub">Current position, background, and research focus</p>
+        <div class="about-layout">
+            <div class="prose">
+                <p>I am currently an Assistant Professor at <a href="https://www.mahindrauniversity.edu.in/">Mahindra University</a>, Hyderabad, where I work on computational methods for balance laws, designing high-order schemes with provable stability guarantees. Before joining Mahindra University, I was a Post Doctoral Fellow at <a href="https://home.iitd.ac.in/">IIT Delhi</a>, where I collaborated with <a href="https://hkkaushik.github.io/">Prof. Harish Kumar</a> on the development of entropy stable methods for complex hyperbolic systems arising in plasma physics and relativistic flows. I earned my PhD from <a href="http://www.srmist.edu.in">SRM Institute of Science and Technology</a> under the supervision of <a href="https://www.srmist.edu.in/faculty/dr-ritesh-kumar-dubey/">Prof. Ritesh Kumar Dubey</a>, working on nonlinearly stable high-order schemes for systems of hyperbolic conservation laws. I completed my MSc from <a href="https://www.iitm.ac.in/">IIT Madras</a>.</p>
+                <p><strong>Current Focus:</strong> I am working on stable schemes for astrophysical problems including simulations of relativistic flows and developing efficient numerical methods with theoretical guarantees — where mathematical rigor meets computational physics.</p>
+            </div>
+            <div class="focus-box">
+                <h3>Research Interests</h3>
+                <div class="tags">
+                    <span class="tag">Entropy Stable Schemes</span>
+                    <span class="tag">DG Schemes</span>
+                    <span class="tag">WENO Schemes</span>
+                    <span class="tag">Structure-Preserving Methods</span>
+                    <span class="tag">Hyperbolic Conservation Laws</span>
+                    <span class="tag">Deep Learning</span>
+                    <span class="tag">Hamilton–Jacobi Equations</span>
+                    <span class="tag">Astrophysical Flows</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Research Team Section -->
-    <section class="section" id="scholars">
-        <div class="section-container">
-            <h2 class="section-title">Research Team</h2>
-            <div class="scholars-grid">
-                <div class="scholar-card">
-                    <div class="scholar-name">Shubham Upadhyay</div>
-                    <div class="scholar-info">
-                        <p><strong>Status:</strong> PhD Scholar | <strong>Start Year:</strong> 2024</p>
-                        <p><strong>Educational Background:</strong> MSc, University of Allahabad, Prayagraj</p>
-                        <p><strong>Email:</strong> shubham.u266@gmail.com</p>
-                    </div>
+<!-- Experience -->
+<section id="experience">
+    <div class="section-inner">
+        <div class="section-heading"><span class="section-num">§2</span> Work Experience</div>
+        <p class="section-sub">Academic and research positions held</p>
+        <div class="exp-grid">
+            <div class="exp-card">
+                <div class="exp-pos">Assistant Professor</div>
+                <div class="exp-org">Mahindra University, Hyderabad</div>
+                <div class="exp-dur">2021 – Present</div>
+            </div>
+            <div class="exp-card">
+                <div class="exp-pos">Post Doctoral Fellow</div>
+                <div class="exp-org">IIT Delhi, New Delhi</div>
+                <div class="exp-dur">2019 – 2021</div>
+            </div>
+            <div class="exp-card">
+                <div class="exp-pos">Senior Research Fellow (SRF)</div>
+                <div class="exp-org">SRM University, Chennai</div>
+                <div class="exp-dur">2016 – 2018</div>
+                <div class="exp-sponsor">Sponsored by CSIR</div>
+            </div>
+            <div class="exp-card">
+                <div class="exp-pos">Junior Research Fellow (JRF)</div>
+                <div class="exp-org">SRM University, Chennai</div>
+                <div class="exp-dur">2013 – 2016</div>
+                <div class="exp-sponsor">Sponsored by SERB, DST</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Teaching -->
+<section id="teaching">
+    <div class="section-inner">
+        <div class="section-heading"><span class="section-num">§3</span> Teaching</div>
+        <p class="section-sub">Courses taught at Mahindra University and IIT Delhi</p>
+        <div class="teaching-grid">
+            <div class="course-card">
+                <div class="course-code">MA2221</div>
+                <div class="course-name"><a href="https://biswarupbiswas.github.io/MA2221">Foundational Mathematics for ML</a></div>
+                <div class="course-meta">Mahindra University · Spring 2026<div class="course-role">Instructor</div></div>
+            </div>
+            <div class="course-card">
+                <div class="course-code">MA4401</div>
+                <div class="course-name">Advanced Numerical Methods</div>
+                <div class="course-meta">Mahindra University · Fall 2025<div class="course-role">Instructor</div></div>
+            </div>
+            <div class="course-card">
+                <div class="course-code">MA6004</div>
+                <div class="course-name">Scientific Computing</div>
+                <div class="course-meta">Mahindra University · Fall 2022, 2023, 2024, 2025<div class="course-role">Instructor</div></div>
+            </div>
+            <div class="course-card">
+                <div class="course-code">MA2208</div>
+                <div class="course-name"><a href="https://biswarupbiswas.github.io/MA2208">Numerical Methods</a></div>
+                <div class="course-meta">Mahindra University · Spring 2022, 2023, 2024, 2025<div class="course-role">Coordinator & Instructor</div></div>
+            </div>
+            <div class="course-card">
+                <div class="course-code">MA203</div>
+                <div class="course-name">Probability & Statistics</div>
+                <div class="course-meta">Mahindra University · Fall 2021–2025<div class="course-role">Tutorial Teacher</div></div>
+            </div>
+            <div class="course-card">
+                <div class="course-code">MA2107</div>
+                <div class="course-name"><a href="https://biswarupbiswas.github.io/MA2107">Programming Workshop</a></div>
+                <div class="course-meta">Mahindra University · Fall 2021–2024<div class="course-role">Instructor</div></div>
+            </div>
+            <div class="course-card">
+                <div class="course-code">MTL712</div>
+                <div class="course-name"><a href="http://maths.iitd.ac.in/drupal/courses/mtl712">Computational Methods for DEs</a></div>
+                <div class="course-meta">IIT Delhi · Fall 2019<div class="course-role">Tutorial Teacher</div></div>
+            </div>
+            <div class="course-card">
+                <div class="course-code">MTP290</div>
+                <div class="course-name"><a href="http://maths.iitd.ac.in/drupal/courses/mtl290">Computing Laboratory</a></div>
+                <div class="course-meta">IIT Delhi · Spring 2020, 2021<div class="course-role">Instructor</div></div>
+            </div>
+            <div class="course-card">
+                <div class="course-code">MTL100</div>
+                <div class="course-name"><a href="http://maths.iitd.ac.in/drupal/courses/mtl100">Calculus</a></div>
+                <div class="course-meta">IIT Delhi · Fall 2020, Spring 2021<div class="course-role">Tutorial Teacher</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Research Team -->
+<section id="scholars">
+    <div class="section-inner">
+        <div class="section-heading"><span class="section-num">§4</span> Research Team</div>
+        <p class="section-sub">PhD scholars under my supervision</p>
+        <div class="scholars-grid">
+            <div class="scholar-card">
+                <div class="scholar-name">Shubham Upadhyay</div>
+                <div class="scholar-info">
+                    <p><strong>Status:</strong> PhD Scholar &nbsp;·&nbsp; <strong>Start Year:</strong> 2024</p>
+                    <p><strong>Background:</strong> MSc, University of Allahabad, Prayagraj</p>
+                    <p><strong>Email:</strong> shubham.u266@gmail.com</p>
                 </div>
-
-                <div class="scholar-card">
-                    <div class="scholar-name">Pramodit Mishra</div>
-                    <div class="scholar-info">
-                        <p><strong>Status:</strong> PhD Scholar | <strong>Start Year:</strong> 2026</p>
-                        <p><strong>Educational Background:</strong> MSc, University of Allahabad, Prayagraj</p>
-                        <p><strong>Email:</strong> pramoditmishra21@gmail.com</p>
-                    </div>
+            </div>
+            <div class="scholar-card">
+                <div class="scholar-name">Pramodit Mishra</div>
+                <div class="scholar-info">
+                    <p><strong>Status:</strong> PhD Scholar &nbsp;·&nbsp; <strong>Start Year:</strong> 2026</p>
+                    <p><strong>Background:</strong> MSc, University of Allahabad, Prayagraj</p>
+                    <p><strong>Email:</strong> pramoditmishra21@gmail.com</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Publications Section -->
-    <section class="section" id="publications">
-        <div class="section-container">
-            <h2 class="section-title">Publications</h2>
-            <ul class="pub-list">
-                <li class="pub-item">
-                    <div class="pub-year">2023</div>
-                    <strong>Entropy stable discontinuous Galerkin schemes for two-fluid relativistic plasma flow equations</strong>
-                    <p>Bhoriya, D., Biswas, B., Kumar, H., & Chandrashekar, P.</p>
-                    <p><em>Journal of Scientific Computing</em>, 97, 72</p>
-                    <p><a href="https://doi.org/10.1007/s10915-023-02387-z">https://doi.org/10.1007/s10915-023-02387-z</a></p>
-                </li>
+<!-- Publications -->
+<section id="publications">
+    <div class="section-inner">
+        <div class="section-heading"><span class="section-num">§5</span> Publications</div>
+        <p class="section-sub">Peer-reviewed journal articles and proceedings</p>
+        <ul class="pub-list">
+            <li class="pub-item">
+                <span class="pub-year">2023</span>
+                <div class="pub-content">
+                    <div class="pub-title">Entropy stable discontinuous Galerkin schemes for two-fluid relativistic plasma flow equations</div>
+                    <div class="pub-authors">Bhoriya, D., Biswas, B., Kumar, H., & Chandrashekar, P.</div>
+                    <div class="pub-journal"><em>Journal of Scientific Computing</em>, 97, 72</div>
+                    <a href="https://doi.org/10.1007/s10915-023-02387-z" class="pub-doi">doi:10.1007/s10915-023-02387-z ↗</a>
+                </div>
+            </li>
+            <li class="pub-item">
+                <span class="pub-year">2022</span>
+                <div class="pub-content">
+                    <div class="pub-title">Entropy stable discontinuous Galerkin schemes for the special relativistic hydrodynamics equations</div>
+                    <div class="pub-authors">Biswas, B., Kumar, H., & Bhoriya, D.</div>
+                    <div class="pub-journal"><em>Computers and Mathematics with Applications</em></div>
+                    <a href="https://doi.org/10.1016/j.camwa.2022.02.019" class="pub-doi">doi:10.1016/j.camwa.2022.02.019 ↗</a>
+                </div>
+            </li>
+            <li class="pub-item">
+                <span class="pub-year">2021</span>
+                <div class="pub-content">
+                    <div class="pub-title">Entropy stable discontinuous Galerkin methods for ten-moment Gaussian closure equations</div>
+                    <div class="pub-authors">Biswas, B., Kumar, H., & Yadav, A.</div>
+                    <div class="pub-journal"><em>Journal of Computational Physics</em></div>
+                    <a href="https://doi.org/10.1016/j.jcp.2021.110148" class="pub-doi">doi:10.1016/j.jcp.2021.110148 ↗</a>
+                </div>
+            </li>
+            <li class="pub-item">
+                <span class="pub-year">2020</span>
+                <div class="pub-content">
+                    <div class="pub-title">ENO and WENO Schemes using Arc-length based Smoothness Measurement</div>
+                    <div class="pub-authors">Biswas, B., & Dubey, R. K.</div>
+                    <div class="pub-journal"><em>Computers and Mathematics with Applications</em>, 80(12)</div>
+                    <a href="https://doi.org/10.1016/j.camwa.2020.10.005" class="pub-doi">doi:10.1016/j.camwa.2020.10.005 ↗</a>
+                </div>
+            </li>
+            <li class="pub-item">
+                <span class="pub-year">2020</span>
+                <div class="pub-content">
+                    <div class="pub-title">Arc Length-Based WENO Scheme for Hamilton–Jacobi Equations</div>
+                    <div class="pub-authors">Samala, R., & Biswas, B.</div>
+                    <div class="pub-journal"><em>Communications on Applied Mathematics and Computation</em></div>
+                    <a href="https://doi.org/10.1007/s42967-020-00091-5" class="pub-doi">doi:10.1007/s42967-020-00091-5 ↗</a>
+                </div>
+            </li>
+            <li class="pub-item">
+                <span class="pub-year">2018</span>
+                <div class="pub-content">
+                    <div class="pub-title">Suitable diffusion for constructing non-oscillatory entropy stable schemes</div>
+                    <div class="pub-authors">Dubey, R. K., & Biswas, B.</div>
+                    <div class="pub-journal"><em>Journal of Computational Physics</em>, 372</div>
+                    <a href="https://doi.org/10.1016/j.jcp.2018.04.037" class="pub-doi">doi:10.1016/j.jcp.2018.04.037 ↗</a>
+                </div>
+            </li>
+            <li class="pub-item">
+                <span class="pub-year">2018</span>
+                <div class="pub-content">
+                    <div class="pub-title">Low dissipative entropy stable schemes using third order WENO and TVD reconstructions</div>
+                    <div class="pub-authors">Biswas, B., & Dubey, R. K.</div>
+                    <div class="pub-journal"><em>Advances in Computational Mathematics</em>, 44(4)</div>
+                    <a href="https://doi.org/10.1007/s10444-017-9576-2" class="pub-doi">doi:10.1007/s10444-017-9576-2 ↗</a>
+                </div>
+            </li>
+            <li class="pub-item">
+                <span class="pub-year">2017</span>
+                <div class="pub-content">
+                    <div class="pub-title">An Analysis on Induced Numerical Oscillations by Lax-Friedrichs Scheme</div>
+                    <div class="pub-authors">Dubey, R. K., & Biswas, B.</div>
+                    <div class="pub-journal"><em>Differential Equations and Dynamical Systems</em>, 25(2)</div>
+                    <a href="https://doi.org/10.1007/s12591-016-0311-0" class="pub-doi">doi:10.1007/s12591-016-0311-0 ↗</a>
+                </div>
+            </li>
+            <li class="pub-item">
+                <span class="pub-year">2016</span>
+                <div class="pub-content">
+                    <div class="pub-title">Local maximum principle satisfying high-order non-oscillatory schemes</div>
+                    <div class="pub-authors">Dubey, R. K., Biswas, B., & Gupta, V.</div>
+                    <div class="pub-journal"><em>International Journal for Numerical Methods in Fluids</em>, 81(11)</div>
+                    <a href="https://doi.org/10.1002/fld.4202" class="pub-doi">doi:10.1002/fld.4202 ↗</a>
+                </div>
+            </li>
+        </ul>
+        <p style="text-align:center;margin-top:2rem;font-family:'EB Garamond',serif;font-size:1.07rem;">
+            <a href="https://www.researchgate.net/profile/Biswarup_Biswas/publications" style="color:var(--link);text-decoration:none;border-bottom:1px solid var(--border);">View complete list on ResearchGate →</a>
+        </p>
+    </div>
+</section>
 
-                <li class="pub-item">
-                    <div class="pub-year">2022</div>
-                    <strong>Entropy stable discontinuous Galerkin schemes for the special relativistic hydrodynamics equations</strong>
-                    <p>Biswas, B., Kumar, H., & Bhoriya, D.</p>
-                    <p><em>Computers and Mathematics with Applications</em></p>
-                    <p><a href="https://doi.org/10.1016/j.camwa.2022.02.019">https://doi.org/10.1016/j.camwa.2022.02.019</a></p>
-                </li>
-
-                <li class="pub-item">
-                    <div class="pub-year">2021</div>
-                    <strong>Entropy stable discontinuous Galerkin methods for ten-moment Gaussian closure equations</strong>
-                    <p>Biswas, B., Kumar, H., & Yadav, A.</p>
-                    <p><em>Journal of Computational Physics</em></p>
-                    <p><a href="https://doi.org/10.1016/j.jcp.2021.110148">https://doi.org/10.1016/j.jcp.2021.110148</a></p>
-                </li>
-
-                <li class="pub-item">
-                    <div class="pub-year">2020</div>
-                    <strong>ENO and WENO Schemes using Arc-length based Smoothness Measurement</strong>
-                    <p>Biswas, B., & Dubey, R. K.</p>
-                    <p><em>Computers and Mathematics with Applications, 80(12)</em></p>
-                    <p><a href="https://doi.org/10.1016/j.camwa.2020.10.005">https://doi.org/10.1016/j.camwa.2020.10.005</a></p>
-                </li>
-
-                <li class="pub-item">
-                    <div class="pub-year">2020</div>
-                    <strong>Arc Length-Based WENO Scheme for Hamilton–Jacobi Equations</strong>
-                    <p>Samala, R., & Biswas, B.</p>
-                    <p><em>Communications on Applied Mathematics and Computation</em></p>
-                    <p><a href="https://doi.org/10.1007/s42967-020-00091-5">https://doi.org/10.1007/s42967-020-00091-5</a></p>
-                </li>
-
-                <li class="pub-item">
-                    <div class="pub-year">2018</div>
-                    <strong>Suitable diffusion for constructing non-oscillatory entropy stable schemes</strong>
-                    <p>Dubey, R. K., & Biswas, B.</p>
-                    <p><em>Journal of Computational Physics, 372</em></p>
-                    <p><a href="https://doi.org/10.1016/j.jcp.2018.04.037">https://doi.org/10.1016/j.jcp.2018.04.037</a></p>
-                </li>
-
-                <li class="pub-item">
-                    <div class="pub-year">2018</div>
-                    <strong>Low dissipative entropy stable schemes using third order WENO and TVD reconstructions</strong>
-                    <p>Biswas, B., & Dubey, R. K.</p>
-                    <p><em>Advances in Computational Mathematics, 44(4)</em></p>
-                    <p><a href="https://doi.org/10.1007/s10444-017-9576-2">https://doi.org/10.1007/s10444-017-9576-2</a></p>
-                </li>
-
-                <li class="pub-item">
-                    <div class="pub-year">2017</div>
-                    <strong>An Analysis on Induced Numerical Oscillations by Lax-Friedrichs Scheme</strong>
-                    <p>Dubey, R. K., & Biswas, B.</p>
-                    <p><em>Differential Equations and Dynamical Systems, 25(2)</em></p>
-                    <p><a href="https://doi.org/10.1007/s12591-016-0311-0">https://doi.org/10.1007/s12591-016-0311-0</a></p>
-                </li>
-
-                <li class="pub-item">
-                    <div class="pub-year">2016</div>
-                    <strong>Local maximum principle satisfying high-order non-oscillatory schemes</strong>
-                    <p>Dubey, R. K., Biswas, B., & Gupta, V.</p>
-                    <p><em>International Journal for Numerical Methods in Fluids, 81(11)</em></p>
-                    <p><a href="https://doi.org/10.1002/fld.4202">https://doi.org/10.1002/fld.4202</a></p>
-                </li>
-            </ul>
-            <p style="margin-top: 2rem; text-align: center;">
-                <a href="https://www.researchgate.net/profile/Biswarup_Biswas/publications" style="color: var(--accent); text-decoration: none; font-weight: 700;">See more publications on ResearchGate →</a>
-            </p>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="section" id="projects">
-        <div class="section-container">
-            <h2 class="section-title">Research Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Simulation of Relativistic Astrophysical Flow Problems</h3>
-                    <p>Development and implementation of modern efficient stable schemes for simulating relativistic astrophysical flows. This project focuses on creating provably stable numerical methods with applications to neutron star mergers, black hole accretion, and other extreme astrophysical phenomena.</p>
-                    <div class="project-meta">
-                        <div>
-                            <strong>Funding:</strong> SERB, Govt. of India<br>
-                            <strong>Total Cost:</strong> 19.6L (approx)<br>
-                            <strong>Status:</strong> Ongoing
-                        </div>
-                        <span class="funding-badge">SERB Funded</span>
-                    </div>
+<!-- Projects -->
+<section id="projects">
+    <div class="section-inner">
+        <div class="section-heading"><span class="section-num">§6</span> Research Projects</div>
+        <p class="section-sub">Funded research initiatives</p>
+        <div class="project-card">
+            <div>
+                <div class="project-title">Simulation of Relativistic Astrophysical Flow Problems</div>
+                <div class="project-desc">
+                    Development and implementation of modern efficient stable schemes for simulating relativistic astrophysical flows. This project focuses on creating provably stable numerical methods with applications to neutron star mergers, black hole accretion, and other extreme astrophysical phenomena where standard numerical techniques break down.
+                </div>
+                <div class="project-meta">
+                    <strong>Funding Agency:</strong> SERB, Government of India &nbsp;&nbsp;·&nbsp;&nbsp;
+                    <strong>Total Cost:</strong> ₹19.6 L (approx.) &nbsp;&nbsp;·&nbsp;&nbsp;
+                    <strong>Status:</strong> Ongoing
+                    <div><span class="status-badge">ACTIVE</span></div>
                 </div>
             </div>
+            <div>
+                <span class="funding-badge">SERB Funded</span>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Education Section -->
-    <section class="section" id="education">
-        <div class="section-container">
-            <h2 class="section-title">Education</h2>
-            <div class="education-timeline">
-                <div class="education-item">
-                    <div class="degree">Ph.D. in Mathematics</div>
-                    <h3>SRM Institute of Science and Technology</h3>
-                    <p><strong>September 2018</strong> • Kattankulathur, India</p>
+<!-- Education -->
+<section id="education">
+    <div class="section-inner">
+        <div class="section-heading"><span class="section-num">§7</span> Education</div>
+        <p class="section-sub">Academic qualifications and degrees</p>
+        <div class="edu-timeline">
+            <div class="edu-item">
+                <div class="edu-degree">Ph.D. in Mathematics</div>
+                <div class="edu-inst">SRM Institute of Science and Technology</div>
+                <div class="edu-details">
+                    <p>Kattankulathur, India &nbsp;·&nbsp; <strong>Awarded:</strong> September 2018</p>
                     <p><strong>Thesis:</strong> Non Linearly Stable High Order Accurate Efficient Schemes for System of Hyperbolic Conservation Laws</p>
                     <p><strong>Advisor:</strong> Prof. Ritesh Kumar Dubey</p>
                 </div>
-
-                <div class="education-item">
-                    <div class="degree">M. Sc. in Mathematics</div>
-                    <h3>IIT Madras</h3>
-                    <p><strong>July 2013</strong> • Chennai, India</p>
+            </div>
+            <div class="edu-item">
+                <div class="edu-degree">M.Sc. in Mathematics</div>
+                <div class="edu-inst">IIT Madras</div>
+                <div class="edu-details">
+                    <p>Chennai, India &nbsp;·&nbsp; <strong>July 2013</strong></p>
                     <p><strong>CGPA:</strong> 8.41 / 10</p>
                 </div>
-
-                <div class="education-item">
-                    <div class="degree">B. Sc. in Mathematics</div>
-                    <h3>University of Kalyani</h3>
-                    <p><strong>May 2010</strong> • West Bengal, India</p>
+            </div>
+            <div class="edu-item">
+                <div class="edu-degree">B.Sc. in Mathematics</div>
+                <div class="edu-inst">University of Kalyani</div>
+                <div class="edu-details">
+                    <p>West Bengal, India &nbsp;·&nbsp; <strong>May 2010</strong></p>
                     <p><strong>Percentage:</strong> 79.37%</p>
                 </div>
             </div>
+        </div>
 
-            <div class="honors-section">
-                <h3>Scholastic Achievements</h3>
-                <ul>
-                    <li>Institute Postdoctoral Fellowship (IPDF) from IIT Delhi, India</li>
-                    <li>Awarded National Postdoctoral Fellowship (N-PDF) by SERB, Govt. of India</li>
-                    <li>Awarded CSIR Senior Research Fellowship (SRF) for PhD</li>
-                    <li>Passed National examination CSIR-UGC NET for Lectureship</li>
-                    <li>Secured All India Rank 121 in IIT JAM examination for Post Graduation study in IIT's</li>
-                    <li>IIT Madras Merit Cum scholarship</li>
-                    <li>Best paper presentation in international conference NDETMC-2017</li>
-                    <li>Awarded Gold Medal in Research Day (2014) at SRM University</li>
-                    <li>West Bengal merit cum means scholarship for Post Graduation study</li>
-                </ul>
+        <div class="honors-box">
+            <h3>Scholastic Achievements</h3>
+            <ul class="honors-list">
+                <li>Institute Postdoctoral Fellowship (IPDF) from IIT Delhi, India</li>
+                <li>National Postdoctoral Fellowship (N-PDF) awarded by SERB, Govt. of India</li>
+                <li>CSIR Senior Research Fellowship (SRF) for doctoral studies</li>
+                <li>Passed National examination CSIR-UGC NET for Lectureship</li>
+                <li>All India Rank 121 in IIT JAM examination for post-graduation at IITs</li>
+                <li>IIT Madras Merit Cum Scholarship during MSc</li>
+                <li>Best Paper Presentation at international conference NDETMC-2017</li>
+                <li>Gold Medal in Research Day (2014) at SRM University</li>
+                <li>West Bengal Merit Cum Means Scholarship for post-graduation</li>
+            </ul>
+        </div>
+
+        <div class="honors-box" style="margin-top:1.5rem;">
+            <h3>Workshops &amp; Training Programs</h3>
+            <ul class="honors-list">
+                <li>Contributed paper at Conference on Computational PDE 2015, TIFR CAM, Bengaluru</li>
+                <li>International IFCAM Workshop on Control and Numerics for Fluid-Structure Interaction Problems — TIFR CAM, Bengaluru (June–July 2015)</li>
+                <li>Advanced Summer School on Control and Numerics for Fluid-Structure Interaction Problems — TIFR CAM (June 2015)</li>
+                <li>Advanced Level Workshop on Computational Methods for Control Problems — IIST &amp; Mar Ivanios College, Trivandrum (March 2015)</li>
+                <li>NPDE-TCA postgraduate level training program on differential equations, IIT Madras (2013)</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Seminars -->
+<section id="seminars">
+    <div class="section-inner">
+        <div class="section-heading"><span class="section-num">§8</span> Seminars &amp; Talks</div>
+        <p class="section-sub">Invited lectures, contributed talks, and research presentations</p>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+            <div class="seminar-item">
+                <div class="seminar-type">Contributed Talk</div>
+                <div class="seminar-title">Limiter based Entropy Stable WENO Schemes for Relativistic Hydrodynamic Equations</div>
+                <div class="seminar-meta">
+                    <strong>Conference:</strong> Latest Advances in Computational and Applied Mathematics (LACAM-2025)<br>
+                    <strong>Venue:</strong> IISER Thiruvananthapuram &nbsp;·&nbsp;
+                    <a href="https://conference.iisertvm.ac.in/lacam-25/">conference.iisertvm.ac.in/lacam-25ᴱˣᵗ</a>
+                </div>
             </div>
-
-            <div class="honors-section" style="margin-top: 2rem;">
-                <h3>Workshop & Training Programs</h3>
-                <ul>
-                    <li>Selected for contributed paper in Conference on Computational PDE 2015 at TIFR CAM, Bengaluru</li>
-                    <li>International IFCAM Workshop on Control and Numerics for Fluid-Structure Interaction Problems (June 29 - July 1, 2015) - TIFR CAM, Bengaluru</li>
-                    <li>Advanced Summer School on Control and Numerics for Fluid-Structure Interaction Problems (22-26 June, 2015) - TIFR CAM, Bengaluru</li>
-                    <li>Advanced Level Workshop "Computational Methods for Control on Problems" (March 16-21, 2015) - IIST, Trivandrum & Mar Ivanios College, Trivandrum</li>
-                    <li>Attended NPDE~TCA postgraduate level training program on differential equations in IIT Madras, 2013</li>
-                </ul>
+            <div class="seminar-item">
+                <div class="seminar-type">Invited Talk</div>
+                <div class="seminar-title">Discontinuous Galerkin entropy stable schemes for hyperbolic conservation laws</div>
+                <div class="seminar-meta">
+                    <strong>Conference:</strong> 5th International Conference On Mathematical Techniques And Applications (ICMTA-2024)<br>
+                    <strong>Venue:</strong> SRM IST, Chennai
+                </div>
+            </div>
+            <div class="seminar-item">
+                <div class="seminar-type">PDF Applicant Talk</div>
+                <div class="seminar-title">Entropy stable discontinuous Galerkin methods for ten-moment Gaussian closure equations</div>
+                <div class="seminar-meta">
+                    <strong>Venue:</strong> TIFR CAM, Bangalore &nbsp;·&nbsp;
+                    <a href="https://www.math.tifrbng.res.in/events/tba-blocked-for-pdf-talk-2">Event Details ↗</a>
+                </div>
+            </div>
+            <div class="seminar-item">
+                <div class="seminar-type">Invited Talk</div>
+                <div class="seminar-title">Introduction to Machine Learning with some Applications</div>
+                <div class="seminar-meta">
+                    <strong>Organizer:</strong> Government Polytechnic Kishanganj, Dept. of Science and Technology, Govt. of Bihar
+                </div>
+            </div>
+            <div class="seminar-item">
+                <div class="seminar-type">PDF Applicant Talk</div>
+                <div class="seminar-title">Development of Entropy Stable TVD and TVB schemes for hyperbolic conservation laws</div>
+                <div class="seminar-meta">
+                    <strong>Venue:</strong> Department of Mathematics, IIT Delhi &nbsp;·&nbsp;
+                    <a href="http://maths.iitd.ac.in/drupal/node/156">Event Details ↗</a>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Seminars Section -->
-    <section class="section" id="seminars">
-        <div class="section-container">
-            <h2 class="section-title">Seminars & Talks</h2>
-            <div class="pub-list">
-                 <div class="pub-item">
-                    <strong>Limiter based Entropy Stable WENO Schemes for Relativistic Hydrodynamic Equations</strong>
-                    <p><strong>In:</strong> Latest Advances in Computational and Applied Mathematics (LACAM-2025)</p>
-                    <p><strong>Type:</strong> Contributed Talk</p>
-                    <p><strong>Venue:</strong> IISER Thiruvananthapuram</p>
-                    <p><a href="https://conference.iisertvm.ac.in/lacam-25/">View Details</a></p>
-                </div>
-                 <div class="pub-item">
-                    <strong>Discontinuous Galerkin entropy stable schemes for hyperbolic conservation laws</strong>
-                    <p><strong>In:</strong> 5th International Conference On Mathematical Techniques And Applications (ICMTA-2024)</p>
-                    <p><strong>Type:</strong> Invited Talk</p>
-                    <p><strong>Venue:</strong> SRM IST, Chennai</p>
-                </div>
-                <div class="pub-item">
-                    <strong>Entropy stable discontinuous Galerkin methods for ten-moment Gaussian closure equations</strong>
-                    <p><strong>Type:</strong> PDF Applicant Talk</p>
-                    <p><strong>Venue:</strong> TIFR CAM, Bangalore</p>
-                    <p><a href="https://www.math.tifrbng.res.in/events/tba-blocked-for-pdf-talk-2">View Details</a></p>
-                </div>
-
-                <div class="pub-item">
-                    <strong>Introduction to machine learning with some applications</strong>
-                    <p><strong>Type:</strong> Invited Talk</p>
-                    <p><strong>Organizer:</strong> Government Polytechnic Kishanganj (Department of Science and Technology), Government of Bihar</p>
-                </div>
-
-                <div class="pub-item">
-                    <strong>Development of Entropy Stable TVD and TVB schemes for hyperbolic conservation laws</strong>
-                    <p><strong>Type:</strong> PDF Applicant Talk</p>
-                    <p><strong>Venue:</strong> Department of Mathematics, IIT Delhi</p>
-                    <p><a href="http://maths.iitd.ac.in/drupal/node/156">View Details</a></p>
-                </div>
+<!-- Contact -->
+<section id="contact">
+    <div class="section-inner">
+        <div class="section-heading"><span class="section-num">§9</span> Contact</div>
+        <p class="section-sub">Reach out for collaborations, queries, or correspondence</p>
+        <div class="contact-layout">
+            <div class="contact-card">
+                <h3>Electronic Mail</h3>
+                <p><strong>Personal:</strong><br><a href="mailto:biswarupb7@gmail.com">biswarupb7@gmail.com</a></p>
+                <p style="margin-top:0.8rem;"><strong>Official:</strong><br><a href="mailto:biswarup.biswas@mahindrauniversity.edu.in">biswarup.biswas@<br>mahindrauniversity.edu.in</a></p>
+            </div>
+            <div class="contact-card">
+                <h3>Postal Address</h3>
+                <p><strong>Department of Mathematics</strong><br>Mahindra University<br>Hyderabad – 500043<br>Telangana, India</p>
+            </div>
+            <div class="contact-card">
+                <h3>Useful Links</h3>
+                <p><a href="https://www.researchgate.net/profile/Biswarup_Biswas">ResearchGate Profile ↗</a></p>
+                <p><a href="https://www.mahindrauniversity.edu.in/">Mahindra University ↗</a></p>
+                <p><a href="https://math.stackexchange.com/">Mathematics Stack Exchange ↗</a></p>
+                <p><a href="https://hartwork.org/beamer-theme-matrix/">Beamer Theme Matrix ↗</a></p>
             </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <div class="section-container">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <h3>Email</h3>
-                    <p><strong>Personal:</strong></p>
-                    <p>biswarupb7@gmail.com</p>
-                    <p style="margin-top: 1rem;"><strong>Official:</strong></p>
-                    <p>biswarup.biswas@mahindrauniversity.edu.in</p>
-                </div>
-
-                <div class="contact-card">
-                    <h3>Address</h3>
-                    <p><strong>Department of Mathematics</strong></p>
-                    <p>Mahindra University<br>
-                    Hyderabad - 500043<br>
-                    Telangana, India</p>
-                </div>
-
-                <div class="contact-card">
-                    <h3>Useful Links</h3>
-                    <p><a href="https://www.researchgate.net/profile/Biswarup_Biswas">ResearchGate Profile</a></p>
-                    <p><a href="https://www.mahindrauniversity.edu.in/">Mahindra University</a></p>
-                    <p><a href="https://math.stackexchange.com/">Mathematics Stack Exchange</a></p>
-                    <p><a href="https://hartwork.org/beamer-theme-matrix/">Beamer Theme Matrix</a></p>
-                </div>
-            </div>
-
-            <div style="text-align: center;">
-                <a href="assets/files/CV_of_Biswarup_Biswas.pdf" class="cv-btn">Download CV</a>
-            </div>
+        <div class="cv-download">
+            <a href="assets/files/CV_of_Biswarup_Biswas.pdf">Download Curriculum Vitæ</a>
+            <small>PDF format · Last updated 2026</small>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© Copyright 2026 Biswarup Biswas - All Rights Reserved</p>
-    </footer>
+<footer>
+    <p>© 2026 Biswarup Biswas · Department of Mathematics, Mahindra University · <em>Omnia vincit veritas</em></p>
+</footer>
 
-    <script>
-        // Theme toggle - Simple and reliable
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
+<script>
+    // Theme
+    const themeBtn = document.getElementById('themeBtn');
+    const body = document.body;
+    const saved = localStorage.getItem('bb-theme') || 'dark';
+    if (saved === 'dark') body.classList.add('dark');
+    themeBtn.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        localStorage.setItem('bb-theme', body.classList.contains('dark') ? 'dark' : 'light');
+    });
 
-        // Initialize theme on page load
-        window.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            
-            if (savedTheme === 'dark') {
-                body.classList.add('dark-theme');
-                themeToggle.textContent = '☀️';
-            } else {
-                body.classList.remove('dark-theme');
-                themeToggle.textContent = '🌙';
-            }
-        });
-
-        // Toggle theme on button click
-        if (themeToggle) {
-            themeToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const isDark = body.classList.toggle('dark-theme');
-                themeToggle.textContent = isDark ? '☀️' : '🌙';
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            });
-        }
-
-        // Mobile menu
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navMenu');
-
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                hamburger.classList.toggle('active');
-            });
-        }
-
-        if (navLinks) {
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    hamburger.classList.remove('active');
-                });
-            });
-        }
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav') && navLinks) {
-                navLinks.classList.remove('active');
-                if (hamburger) hamburger.classList.remove('active');
-            }
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#' && href !== '#home') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-            });
-        });
-    </script>
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+</script>
+</body>
+</html>
