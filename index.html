@@ -131,9 +131,56 @@
         .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.4rem; }
         .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--ink); margin: 5px 0; transition: all 0.3s; }
 
+        /* ─── News Ticker ─── */
+        .news-ticker-container {
+            position: fixed;
+            top: 60px; /* Slightly higher */
+            left: 0;
+            right: 0;
+            height: 40px; /* Taller for better centering */
+            background: var(--accent);
+            color: #fff;
+            z-index: 999;
+            overflow: hidden;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.05rem;
+            letter-spacing: 0.03em;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+
+        .news-ticker-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker 45s linear 3 forwards; /* Slightly slower to read both items */
+            line-height: 40px;
+            will-change: transform;
+        }
+
+        .news-ticker-content span {
+            margin-right: 4rem; /* Gap between different news items */
+        }
+
+        .news-ticker-content a {
+            color: #fff;
+            text-decoration: underline;
+            font-weight: 600;
+            margin: 0 0.5rem;
+        }
+
+        @keyframes ticker {
+            from { transform: translateX(100vw); }
+            to { transform: translateX(-100%); }
+        }
+
+        .news-ticker-container:hover .news-ticker-content {
+            animation-play-state: paused;
+        }
+
         /* ─── Hero ─── */
         .hero {
-            margin-top: 60px;
+            margin-top: 100px; /* 60 + 40 */
             padding: 5rem 2rem 4rem;
             background: linear-gradient(160deg, var(--parchment-warm) 0%, var(--parchment) 60%);
             border-bottom: 1px solid var(--border);
@@ -630,6 +677,14 @@
     </div>
 </nav>
 
+<!-- News Ticker -->
+<div class="news-ticker-container">
+    <div class="news-ticker-content">
+        <span>PhD Admissions Open: <a href="assets/files/mahindra_phd_maths_poster.html">Apply to Mahindra University Department of Mathematics</a></span>
+        <span>Registration open for Fall 2026: <a href="assets/files/syllabus_installation.pdf">MA5020 - Computational Methods for Fluid Flow (Syllabus)</a></span>
+    </div>
+</div>
+
 <!-- Hero -->
 <section class="hero" id="home">
     <div class="hero-inner">
@@ -720,7 +775,7 @@
         <div class="teaching-grid">
             <div class="course-card">
                 <div class="course-code">MA5020</div>
-                <div class="course-name">Computational Methods for Fluid Flow</div>
+                <div class="course-name"><a href="https://biswarupbiswas.github.io/MA5020">Computational Methods for Fluid Flow</a></div>
                 <div class="course-meta">Mahindra University · Fall 2026<div class="course-role">Instructor</div></div>
             </div>
             <div class="course-card">
