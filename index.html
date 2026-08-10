@@ -626,11 +626,19 @@
         footer p { font-family: 'Crimson Pro', serif; font-size: 1rem; /* was 0.9rem */ color: var(--ink-muted); }
         footer em { color: var(--accent-gold); }
 
-        .visitor-counter {
+        .visitor-counter-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .visitor-counter, .online-counter {
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
-            margin-top: 0.25rem;
             padding: 0.35rem 0.85rem;
             background: var(--card);
             border: 1px solid var(--border);
@@ -646,15 +654,67 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 10px var(--shadow-deep);
         }
+        .online-counter:hover {
+            border-color: #2e7d32;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px var(--shadow-deep);
+        }
+        body.dark .online-counter:hover {
+            border-color: #4caf50;
+        }
+
         .visitor-counter-icon {
             display: flex;
             align-items: center;
             color: var(--accent);
         }
-        .visitor-counter img {
-            height: 20px;
-            border-radius: 3px;
-            display: block;
+
+        .visitor-label, .online-label {
+            font-family: 'Crimson Pro', serif;
+            font-size: 0.95rem;
+            color: var(--ink-muted);
+        }
+        .visitor-num, .online-num {
+            font-weight: 600;
+            color: var(--ink);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #2e7d32;
+            border-radius: 50%;
+            position: relative;
+            display: inline-block;
+        }
+        body.dark .pulse-dot {
+            background-color: #4caf50;
+        }
+        .pulse-dot::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background-color: rgba(46, 125, 50, 0.45);
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        body.dark .pulse-dot::after {
+            background-color: rgba(76, 175, 80, 0.45);
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(2.2); opacity: 0; }
+        }
+
+        .online-label {
+            font-family: 'Crimson Pro', serif;
+            font-size: 0.95rem;
+            color: var(--ink-muted);
+        }
+        .online-num {
+            font-weight: 600;
+            color: var(--ink);
         }
 
         /* ─── Responsive ─── */
@@ -1150,14 +1210,22 @@
 
 <footer>
     <p>© 2026 Biswarup Biswas · Department of Mathematics, Mahindra University · <em>Omnia vincit veritas</em></p>
-    <div class="visitor-counter" title="Total Page Visitors">
-        <span class="visitor-counter-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-        </span>
-        <img src="https://hits.sh/biswarupbiswas.github.io.svg?style=flat-square&label=Visitors&color=8b2e1a&labelColor=3a3630" alt="Visitor Count" loading="lazy" />
+    <div class="visitor-counter-group">
+        <div class="visitor-counter" title="Total Page Visitors">
+            <span class="visitor-counter-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+            </span>
+            <span class="visitor-label">Visitors:</span>
+            <span id="totalVisitorCount" class="visitor-num">200,124</span>
+        </div>
+        <div class="online-counter" title="Currently Active Visitors">
+            <span class="pulse-dot"></span>
+            <span class="online-label">Online:</span>
+            <span id="onlineCount" class="online-num">1</span>
+        </div>
     </div>
 </footer>
 
@@ -1177,6 +1245,55 @@
     const navLinks = document.getElementById('navLinks');
     hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    // Live Online Visitors Counter
+    function fetchOnlineCount() {
+        window.WAU_r_s = function(count) {
+            const onlineEl = document.getElementById('onlineCount');
+            if (onlineEl) {
+                const numericCount = parseInt(count.toString().replace(/,/g, ''), 10) || 1;
+                onlineEl.textContent = numericCount;
+            }
+        };
+        const script = document.createElement('script');
+        script.src = 'https://whos.amung.us/pingjs/?k=biswarupbiswas&c=s&r=' + Math.floor(Math.random() * 10000);
+        script.async = true;
+        document.body.appendChild(script);
+        script.onload = () => script.remove();
+    }
+    fetchOnlineCount();
+    setInterval(fetchOnlineCount, 30000);
+
+    // Total Visitor Counter (Starting from 200,124)
+    const BASE_VISITOR_COUNT = 200124;
+    function fetchTotalVisitorCount() {
+        const totalEl = document.getElementById('totalVisitorCount');
+        if (!totalEl) return;
+
+        let localVisits = parseInt(localStorage.getItem('bb_total_visits') || '0', 10);
+        if (!sessionStorage.getItem('bb_session_active')) {
+            sessionStorage.setItem('bb_session_active', '1');
+            localVisits += 1;
+            localStorage.setItem('bb_total_visits', localVisits.toString());
+        }
+
+        fetch('https://hits.sh/biswarupbiswas.github.io.svg?style=flat-square&label=Visitors&color=8b2e1a&labelColor=3a3630')
+            .then(res => res.text())
+            .then(svgText => {
+                const match = svgText.match(/<title>Visitors:\s*(\d+)<\/title>/i) || svgText.match(/>(\d+)<\/text>\s*<\/g>/);
+                if (match && match[1]) {
+                    const rawHits = parseInt(match[1], 10);
+                    const grandTotal = BASE_VISITOR_COUNT + rawHits;
+                    totalEl.textContent = grandTotal.toLocaleString('en-US');
+                } else {
+                    totalEl.textContent = (BASE_VISITOR_COUNT + localVisits).toLocaleString('en-US');
+                }
+            })
+            .catch(() => {
+                totalEl.textContent = (BASE_VISITOR_COUNT + localVisits).toLocaleString('en-US');
+            });
+    }
+    fetchTotalVisitorCount();
 </script>
 </body>
 </html>
