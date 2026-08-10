@@ -1219,7 +1219,7 @@
                 </svg>
             </span>
             <span class="visitor-label">Visitors:</span>
-            <span id="totalVisitorCount" class="visitor-num">200,124</span>
+            <span id="totalVisitorCount" class="visitor-num">0</span>
         </div>
         <div class="online-counter" title="Currently Active Visitors">
             <span class="pulse-dot"></span>
@@ -1264,6 +1264,26 @@
     fetchOnlineCount();
     setInterval(fetchOnlineCount, 30000);
 
+    // Fast Count-Up Animation
+    function animateCountUp(element, target, duration = 1000) {
+        if (!element) return;
+        const startTime = performance.now();
+        function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+        function update(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const current = Math.floor(target * easeOutCubic(progress));
+            element.textContent = current.toLocaleString('en-US');
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = target.toLocaleString('en-US');
+            }
+        }
+        requestAnimationFrame(update);
+    }
+
     // Total Visitor Counter (Starting from 200,124)
     const BASE_VISITOR_COUNT = 200124;
     function fetchTotalVisitorCount() {
@@ -1277,6 +1297,11 @@
             localStorage.setItem('bb_total_visits', localVisits.toString());
         }
 
+        const initialTarget = BASE_VISITOR_COUNT + localVisits;
+        
+        // Immediately start fast animation from 0 to target
+        animateCountUp(totalEl, initialTarget, 1000);
+
         fetch('https://hits.sh/biswarupbiswas.github.io.svg?style=flat-square&label=Visitors&color=8b2e1a&labelColor=3a3630')
             .then(res => res.text())
             .then(svgText => {
@@ -1284,14 +1309,11 @@
                 if (match && match[1]) {
                     const rawHits = parseInt(match[1], 10);
                     const grandTotal = BASE_VISITOR_COUNT + rawHits;
+                    // Update final target if global hit count is available
                     totalEl.textContent = grandTotal.toLocaleString('en-US');
-                } else {
-                    totalEl.textContent = (BASE_VISITOR_COUNT + localVisits).toLocaleString('en-US');
                 }
             })
-            .catch(() => {
-                totalEl.textContent = (BASE_VISITOR_COUNT + localVisits).toLocaleString('en-US');
-            });
+            .catch(() => {});
     }
     fetchTotalVisitorCount();
 </script>
