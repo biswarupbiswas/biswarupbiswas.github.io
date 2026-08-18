@@ -668,6 +668,11 @@
             align-items: center;
             color: var(--accent);
         }
+        .visitor-counter img {
+            height: 20px;
+            border-radius: 3px;
+            display: block;
+        }
 
         .visitor-label, .online-label {
             font-family: 'Crimson Pro', serif;
@@ -1217,8 +1222,7 @@
                     <circle cx="12" cy="12" r="3"></circle>
                 </svg>
             </span>
-            <span class="visitor-label">Visitors:</span>
-            <span id="totalVisitorCount" class="visitor-num">0</span>
+            <img src="https://komarev.com/ghpvc/?username=biswarupbiswas&base=200124&color=8b2e1a&label=Visitors&style=flat-square" alt="Visitor Count" loading="lazy" />
         </div>
         <div class="online-counter" title="Currently Active Visitors">
             <span class="pulse-dot"></span>
@@ -1262,59 +1266,6 @@
     }
     fetchOnlineCount();
     setInterval(fetchOnlineCount, 30000);
-
-    // Fast Count-Up Animation
-    function animateCountUp(element, target, duration = 1000) {
-        if (!element) return;
-        const startTime = performance.now();
-        function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-
-        function update(now) {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const current = Math.floor(target * easeOutCubic(progress));
-            element.textContent = current.toLocaleString('en-US');
-            if (progress < 1) {
-                requestAnimationFrame(update);
-            } else {
-                element.textContent = target.toLocaleString('en-US');
-            }
-        }
-        requestAnimationFrame(update);
-    }
-
-    // Total Visitor Counter (Starting from 200,124)
-    const BASE_VISITOR_COUNT = 200124;
-    function fetchTotalVisitorCount() {
-        const totalEl = document.getElementById('totalVisitorCount');
-        if (!totalEl) return;
-
-        let localVisits = parseInt(localStorage.getItem('bb_total_visits') || '0', 10);
-        if (!sessionStorage.getItem('bb_session_active')) {
-            sessionStorage.setItem('bb_session_active', '1');
-            localVisits += 1;
-            localStorage.setItem('bb_total_visits', localVisits.toString());
-        }
-
-        const initialTarget = BASE_VISITOR_COUNT + localVisits;
-        
-        // Immediately start fast animation from 0 to target
-        animateCountUp(totalEl, initialTarget, 1000);
-
-        fetch('https://hits.sh/biswarupbiswas.github.io.svg?style=flat-square&label=Visitors&color=8b2e1a&labelColor=3a3630')
-            .then(res => res.text())
-            .then(svgText => {
-                const match = svgText.match(/<title>Visitors:\s*(\d+)<\/title>/i) || svgText.match(/>(\d+)<\/text>\s*<\/g>/);
-                if (match && match[1]) {
-                    const rawHits = parseInt(match[1], 10);
-                    const grandTotal = BASE_VISITOR_COUNT + rawHits;
-                    // Update final target if global hit count is available
-                    totalEl.textContent = grandTotal.toLocaleString('en-US');
-                }
-            })
-            .catch(() => {});
-    }
-    fetchTotalVisitorCount();
 </script>
 </body>
 </html>
