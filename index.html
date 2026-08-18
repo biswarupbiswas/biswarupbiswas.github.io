@@ -1222,7 +1222,8 @@
                     <circle cx="12" cy="12" r="3"></circle>
                 </svg>
             </span>
-            <img src="https://komarev.com/ghpvc/?username=biswarupbiswas&base=200124&color=8b2e1a&label=Visitors&style=flat-square" alt="Visitor Count" loading="lazy" />
+            <span class="visitor-label">Visitors:</span>
+            <span id="totalVisitorCount" class="visitor-num">0</span>
         </div>
         <div class="online-counter" title="Currently Active Visitors">
             <span class="pulse-dot"></span>
@@ -1266,6 +1267,44 @@
     }
     fetchOnlineCount();
     setInterval(fetchOnlineCount, 30000);
+
+    // Smooth Fast Count-Up Animation
+    function animateCountUp(element, target, duration = 800) {
+        if (!element) return;
+        const startTime = performance.now();
+        function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+        function update(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const current = Math.floor(target * easeOutCubic(progress));
+            element.textContent = current.toLocaleString('en-US');
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = target.toLocaleString('en-US');
+            }
+        }
+        requestAnimationFrame(update);
+    }
+
+    // Total Global Visitor Counter (Starting from 200,124)
+    const BASE_VISITOR_COUNT = 200124;
+    window.BusuanziCallback = function(data) {
+        const totalEl = document.getElementById('totalVisitorCount');
+        if (!totalEl) return;
+        const rawCount = (data && (data.site_pv || data.page_pv)) ? Number(data.site_pv || data.page_pv) : 0;
+        const total = BASE_VISITOR_COUNT + rawCount;
+        animateCountUp(totalEl, total, 800);
+    };
+
+    // Load live Busuanzi count with cache-busting timestamp
+    (function loadBusuanzi() {
+        const script = document.createElement('script');
+        script.src = '//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback&_=' + Date.now();
+        script.async = true;
+        document.body.appendChild(script);
+    })();
 </script>
 </body>
 </html>
