@@ -1288,14 +1288,12 @@
         requestAnimationFrame(update);
     }
 
-    // Total Global Visitor Counter (Starting from 200,124)
-    const BASE_VISITOR_COUNT = 200124;
+    // Total Global Visitor Counter (Original Value)
     window.BusuanziCallback = function(data) {
         const totalEl = document.getElementById('totalVisitorCount');
         if (!totalEl) return;
         const rawCount = (data && (data.site_pv || data.page_pv)) ? Number(data.site_pv || data.page_pv) : 0;
-        const total = BASE_VISITOR_COUNT + rawCount;
-        animateCountUp(totalEl, total, 800);
+        animateCountUp(totalEl, rawCount, 800);
     };
 
     // Load live Busuanzi count with cache-busting timestamp
